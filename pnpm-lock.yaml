@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       majas:
-        specifier: 1.1.4
-        version: 1.1.4(commander@15.1.0)
+        specifier: ^2.0.0
+        version: 2.0.0(commander@15.1.0)
       remark-parse:
         specifier: ^11.0.0
         version: 11.0.0
@@ -440,8 +440,8 @@ packages:
   jsonfile@6.2.1:
     resolution: {integrity: sha512-zwOTdL3rFQ/lRdBnntKVOX6k5cKJwEc1HdilT71BWEu7J41gXIB2MRp+vxduPSwZJPWBxEzv4yH1wYLJGUHX4Q==}
 
-  majas@1.1.4:
-    resolution: {integrity: sha512-5bDiPi3CqcFFUzqwhMLqm3knRvIbqyMaPZC4B1IKLV43wzDczTUsMmYsG3bWPe+y6TLkSy3TUVWTn4cv+lckiA==}
+  majas@2.0.0:
+    resolution: {integrity: sha512-3jB1fhtta0tZGE051+rVdgDHy60BuWyqstz7ncWcCDnTkq0/umzN0Plp9PkvsClgZeUNX39VD5pE+9KN+/Ufxg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -769,13 +769,15 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.12
 
-  majas@1.1.4(commander@15.1.0):
+  majas@2.0.0(commander@15.1.0):
     dependencies:
       '@commander-js/extra-typings': 15.1.0(commander@15.1.0)
       ajv: 8.20.0
+      decode-named-character-reference: 1.3.0
       fs-extra: 11.4.1
       json-schema-to-ts: 3.1.1
       mdast-util-from-markdown: 2.1.0
+      micromark-util-decode-numeric-character-reference: 2.0.2
       sanitize-filename: 1.6.5
       squrly-format: 1.0.1
     transitivePeerDependencies:

@@ -24,7 +24,7 @@
     "tsx": "^4.23.15"
   },
   "dependencies": {
-    "majas": "1.1.4",
+    "majas": "^2.0.0",
     "remark-parse": "^11.0.0",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.2.0"
