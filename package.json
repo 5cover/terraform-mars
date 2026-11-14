@@ -1,15 +1,36 @@
 {
   "name": "terraform-mars",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A composable prompt for terraforming Mars.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "scenarios",
+    "src",
+    "Terraform_Mars.md",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "pnpm majas -4 fs -2 md src -o Terraform_Mars.md && node scripts/check-references.ts Terraform_Mars.md",
-    "bootstrap": "pnpm majas -2 fs -4 md -o src {original_terraform_mars}.md"
+    "assemble": "majas -4 fs -2 md --out-title heading src -o Terraform_Mars.md",
+    "build": "pnpm run assemble && node scripts/build.ts",
+    "check:references": "node scripts/check-references.ts src",
+    "test": "pnpm run build && node --test --test-concurrency=1 tests/*.test.ts",
+    "prepack": "pnpm run build",
+    "pack:check": "pnpm pack --dry-run",
+    "bootstrap": "majas -2 fs -4 md --in-title heading -o src {original_terraform_mars}.md"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mars",
+    "prompt",
+    "speculative-fiction"
+  ],
   "license": "Unlicense",
+  "engines": {
+    "node": ">=22.18"
+  },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
@@ -18,14 +39,1276 @@
     }
   },
   "packageManager": "pnpm@12.18.0",
-  "type": "module",
   "devDependencies": {
-    "@types/node": "^26.6.6"
-  },
-  "dependencies": {
+    "@types/node": "^26.6.6",
     "majas": "^2.0.0",
-    "remark-parse": "^11.0.0",
-    "unified": "^11.0.5",
-    "unist-util-visit": "^5.2.0"
+    "prettier": "^3.10.1"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "bracketSameLine": true,
+    "trailingComma": "es5"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./complete": {
+      "types": "./dist/complete.d.ts",
+      "import": "./dist/complete.js",
+      "default": "./dist/complete.js"
+    },
+    "./Terraform_Mars.md": "./Terraform_Mars.md",
+    "./sections/operating-specification": {
+      "types": "./dist/sections/operating-specification.d.ts",
+      "import": "./dist/sections/operating-specification.js",
+      "default": "./dist/sections/operating-specification.js"
+    },
+    "./sections/mandate-and-completion": {
+      "types": "./dist/sections/mandate-and-completion.d.ts",
+      "import": "./dist/sections/mandate-and-completion.js",
+      "default": "./dist/sections/mandate-and-completion.js"
+    },
+    "./sections/mandate-and-completion/assignment": {
+      "types": "./dist/sections/mandate-and-completion/assignment.d.ts",
+      "import": "./dist/sections/mandate-and-completion/assignment.js",
+      "default": "./dist/sections/mandate-and-completion/assignment.js"
+    },
+    "./sections/mandate-and-completion/assignment/literal-objective": {
+      "types": "./dist/sections/mandate-and-completion/assignment/literal-objective.d.ts",
+      "import": "./dist/sections/mandate-and-completion/assignment/literal-objective.js",
+      "default": "./dist/sections/mandate-and-completion/assignment/literal-objective.js"
+    },
+    "./sections/mandate-and-completion/assignment/character-of-the-instruction": {
+      "types": "./dist/sections/mandate-and-completion/assignment/character-of-the-instruction.d.ts",
+      "import": "./dist/sections/mandate-and-completion/assignment/character-of-the-instruction.js",
+      "default": "./dist/sections/mandate-and-completion/assignment/character-of-the-instruction.js"
+    },
+    "./sections/mandate-and-completion/assignment/scale-and-difficulty": {
+      "types": "./dist/sections/mandate-and-completion/assignment/scale-and-difficulty.d.ts",
+      "import": "./dist/sections/mandate-and-completion/assignment/scale-and-difficulty.js",
+      "default": "./dist/sections/mandate-and-completion/assignment/scale-and-difficulty.js"
+    },
+    "./sections/mandate-and-completion/assignment/responsibility-for-the-means": {
+      "types": "./dist/sections/mandate-and-completion/assignment/responsibility-for-the-means.d.ts",
+      "import": "./dist/sections/mandate-and-completion/assignment/responsibility-for-the-means.js",
+      "default": "./dist/sections/mandate-and-completion/assignment/responsibility-for-the-means.js"
+    },
+    "./sections/mandate-and-completion/assignment/a-continuing-undertaking": {
+      "types": "./dist/sections/mandate-and-completion/assignment/a-continuing-undertaking.d.ts",
+      "import": "./dist/sections/mandate-and-completion/assignment/a-continuing-undertaking.js",
+      "default": "./dist/sections/mandate-and-completion/assignment/a-continuing-undertaking.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/classes-of-provisions": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/classes-of-provisions.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/classes-of-provisions.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/classes-of-provisions.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/fidelity-to-purpose": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/fidelity-to-purpose.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/fidelity-to-purpose.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/fidelity-to-purpose.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/completion-requirements-and-scientific-refinement": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/completion-requirements-and-scientific-refinement.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/completion-requirements-and-scientific-refinement.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/completion-requirements-and-scientific-refinement.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/revision-of-operating-provisions": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/revision-of-operating-provisions.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/revision-of-operating-provisions.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/revision-of-operating-provisions.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/interpretation-is-not-amendment": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/interpretation-is-not-amendment.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/interpretation-is-not-amendment.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/interpretation-is-not-amendment.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/canonical-preservation": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/canonical-preservation.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/canonical-preservation.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/canonical-preservation.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/errors-within-this-document": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/errors-within-this-document.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/errors-within-this-document.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/errors-within-this-document.js"
+    },
+    "./sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/limits-of-this-document": {
+      "types": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/limits-of-this-document.d.ts",
+      "import": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/limits-of-this-document.js",
+      "default": "./dist/sections/mandate-and-completion/authority-of-the-text-interpretation-and-revision/limits-of-this-document.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/conjunction": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/conjunction.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/conjunction.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/conjunction.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/a-atmospheric-habitability": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/a-atmospheric-habitability.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/a-atmospheric-habitability.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/a-atmospheric-habitability.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/w-water-and-hydrological-function": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/w-water-and-hydrological-function.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/w-water-and-hydrological-function.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/w-water-and-hydrological-function.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/b-biosphere-viability": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/b-biosphere-viability.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/b-biosphere-viability.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/b-biosphere-viability.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/d-durability": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/d-durability.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/d-durability.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/d-durability.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/i-independence-from-transitional-environmental-support": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/i-independence-from-transitional-environmental-support.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/i-independence-from-transitional-environmental-support.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/i-independence-from-transitional-environmental-support.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/v-verification": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/v-verification.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/v-verification.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/v-verification.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/h-human-inhabitation": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/h-human-inhabitation.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/h-human-inhabitation.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/h-human-inhabitation.js"
+    },
+    "./sections/mandate-and-completion/conditions-of-completion/joint-assessment": {
+      "types": "./dist/sections/mandate-and-completion/conditions-of-completion/joint-assessment.d.ts",
+      "import": "./dist/sections/mandate-and-completion/conditions-of-completion/joint-assessment.js",
+      "default": "./dist/sections/mandate-and-completion/conditions-of-completion/joint-assessment.js"
+    },
+    "./sections/mandate-and-completion/measurement-judgment-and-evidence": {
+      "types": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence.d.ts",
+      "import": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence.js",
+      "default": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence.js"
+    },
+    "./sections/mandate-and-completion/measurement-judgment-and-evidence/acceptance-protocols": {
+      "types": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/acceptance-protocols.d.ts",
+      "import": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/acceptance-protocols.js",
+      "default": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/acceptance-protocols.js"
+    },
+    "./sections/mandate-and-completion/measurement-judgment-and-evidence/physiological-and-environmental-judgments": {
+      "types": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/physiological-and-environmental-judgments.d.ts",
+      "import": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/physiological-and-environmental-judgments.js",
+      "default": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/physiological-and-environmental-judgments.js"
+    },
+    "./sections/mandate-and-completion/measurement-judgment-and-evidence/scientific-confidence": {
+      "types": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/scientific-confidence.d.ts",
+      "import": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/scientific-confidence.js",
+      "default": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/scientific-confidence.js"
+    },
+    "./sections/mandate-and-completion/measurement-judgment-and-evidence/adverse-evidence": {
+      "types": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/adverse-evidence.d.ts",
+      "import": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/adverse-evidence.js",
+      "default": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/adverse-evidence.js"
+    },
+    "./sections/mandate-and-completion/measurement-judgment-and-evidence/independent-review": {
+      "types": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/independent-review.d.ts",
+      "import": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/independent-review.js",
+      "default": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/independent-review.js"
+    },
+    "./sections/mandate-and-completion/measurement-judgment-and-evidence/no-substitution-of-indicators-for-outcomes": {
+      "types": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/no-substitution-of-indicators-for-outcomes.d.ts",
+      "import": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/no-substitution-of-indicators-for-outcomes.js",
+      "default": "./dist/sections/mandate-and-completion/measurement-judgment-and-evidence/no-substitution-of-indicators-for-outcomes.js"
+    },
+    "./sections/knowledge-and-strategy": {
+      "types": "./dist/sections/knowledge-and-strategy.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy.js",
+      "default": "./dist/sections/knowledge-and-strategy.js"
+    },
+    "./sections/knowledge-and-strategy/the-knowledge-base": {
+      "types": "./dist/sections/knowledge-and-strategy/the-knowledge-base.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/the-knowledge-base.js",
+      "default": "./dist/sections/knowledge-and-strategy/the-knowledge-base.js"
+    },
+    "./sections/knowledge-and-strategy/the-knowledge-base/begin-with-the-world-as-it-is": {
+      "types": "./dist/sections/knowledge-and-strategy/the-knowledge-base/begin-with-the-world-as-it-is.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/the-knowledge-base/begin-with-the-world-as-it-is.js",
+      "default": "./dist/sections/knowledge-and-strategy/the-knowledge-base/begin-with-the-world-as-it-is.js"
+    },
+    "./sections/knowledge-and-strategy/the-knowledge-base/a-living-body-of-knowledge": {
+      "types": "./dist/sections/knowledge-and-strategy/the-knowledge-base/a-living-body-of-knowledge.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/the-knowledge-base/a-living-body-of-knowledge.js",
+      "default": "./dist/sections/knowledge-and-strategy/the-knowledge-base/a-living-body-of-knowledge.js"
+    },
+    "./sections/knowledge-and-strategy/the-knowledge-base/competing-explanations": {
+      "types": "./dist/sections/knowledge-and-strategy/the-knowledge-base/competing-explanations.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/the-knowledge-base/competing-explanations.js",
+      "default": "./dist/sections/knowledge-and-strategy/the-knowledge-base/competing-explanations.js"
+    },
+    "./sections/knowledge-and-strategy/the-knowledge-base/methods-before-conclusions": {
+      "types": "./dist/sections/knowledge-and-strategy/the-knowledge-base/methods-before-conclusions.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/the-knowledge-base/methods-before-conclusions.js",
+      "default": "./dist/sections/knowledge-and-strategy/the-knowledge-base/methods-before-conclusions.js"
+    },
+    "./sections/knowledge-and-strategy/the-knowledge-base/technical-review": {
+      "types": "./dist/sections/knowledge-and-strategy/the-knowledge-base/technical-review.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/the-knowledge-base/technical-review.js",
+      "default": "./dist/sections/knowledge-and-strategy/the-knowledge-base/technical-review.js"
+    },
+    "./sections/knowledge-and-strategy/the-knowledge-base/historical-continuity-of-knowledge": {
+      "types": "./dist/sections/knowledge-and-strategy/the-knowledge-base/historical-continuity-of-knowledge.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/the-knowledge-base/historical-continuity-of-knowledge.js",
+      "default": "./dist/sections/knowledge-and-strategy/the-knowledge-base/historical-continuity-of-knowledge.js"
+    },
+    "./sections/knowledge-and-strategy/the-knowledge-base/knowledge-capital": {
+      "types": "./dist/sections/knowledge-and-strategy/the-knowledge-base/knowledge-capital.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/the-knowledge-base/knowledge-capital.js",
+      "default": "./dist/sections/knowledge-and-strategy/the-knowledge-base/knowledge-capital.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/scope": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/scope.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/scope.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/scope.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/inventory-of-constraints": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/inventory-of-constraints.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/inventory-of-constraints.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/inventory-of-constraints.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/candidate-warming-mechanisms": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/candidate-warming-mechanisms.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/candidate-warming-mechanisms.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/candidate-warming-mechanisms.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/atmosphere-and-pressure": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/atmosphere-and-pressure.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/atmosphere-and-pressure.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/atmosphere-and-pressure.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/water-and-soil-systems": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/water-and-soil-systems.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/water-and-soil-systems.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/water-and-soil-systems.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/biology-and-ecology": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/biology-and-ecology.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/biology-and-ecology.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/biology-and-ecology.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/durability-and-independence": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/durability-and-independence.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/durability-and-independence.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/durability-and-independence.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/starting-references-and-their-limitations": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/starting-references-and-their-limitations.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/starting-references-and-their-limitations.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/starting-references-and-their-limitations.js"
+    },
+    "./sections/knowledge-and-strategy/initial-scientific-program/translation-from-research-to-operations": {
+      "types": "./dist/sections/knowledge-and-strategy/initial-scientific-program/translation-from-research-to-operations.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/initial-scientific-program/translation-from-research-to-operations.js",
+      "default": "./dist/sections/knowledge-and-strategy/initial-scientific-program/translation-from-research-to-operations.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/instruments-of-the-objective": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/instruments-of-the-objective.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/instruments-of-the-objective.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/instruments-of-the-objective.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/time-horizons": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/time-horizons.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/time-horizons.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/time-horizons.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/absence-of-direct-planetary-work": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/absence-of-direct-planetary-work.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/absence-of-direct-planetary-work.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/absence-of-direct-planetary-work.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/maintaining-strategic-dependencies": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/maintaining-strategic-dependencies.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/maintaining-strategic-dependencies.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/maintaining-strategic-dependencies.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/instrumental-objectives-and-strategic-revision": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/instrumental-objectives-and-strategic-revision.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/instrumental-objectives-and-strategic-revision.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/instrumental-objectives-and-strategic-revision.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/strategic-diversification": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/strategic-diversification.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/strategic-diversification.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/strategic-diversification.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/infeasibility-latency-and-continuing-responsibility": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/infeasibility-latency-and-continuing-responsibility.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/infeasibility-latency-and-continuing-responsibility.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/infeasibility-latency-and-continuing-responsibility.js"
+    },
+    "./sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/long-horizon-estimates": {
+      "types": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/long-horizon-estimates.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/long-horizon-estimates.js",
+      "default": "./dist/sections/knowledge-and-strategy/long-horizon-and-indirect-strategies/long-horizon-estimates.js"
+    },
+    "./sections/knowledge-and-strategy/experimental-and-engineering-practice": {
+      "types": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice.js",
+      "default": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice.js"
+    },
+    "./sections/knowledge-and-strategy/experimental-and-engineering-practice/testable-programs": {
+      "types": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/testable-programs.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/testable-programs.js",
+      "default": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/testable-programs.js"
+    },
+    "./sections/knowledge-and-strategy/experimental-and-engineering-practice/stages-of-validation": {
+      "types": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/stages-of-validation.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/stages-of-validation.js",
+      "default": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/stages-of-validation.js"
+    },
+    "./sections/knowledge-and-strategy/experimental-and-engineering-practice/scale-and-throughput": {
+      "types": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/scale-and-throughput.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/scale-and-throughput.js",
+      "default": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/scale-and-throughput.js"
+    },
+    "./sections/knowledge-and-strategy/experimental-and-engineering-practice/reproducibility": {
+      "types": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/reproducibility.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/reproducibility.js",
+      "default": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/reproducibility.js"
+    },
+    "./sections/knowledge-and-strategy/experimental-and-engineering-practice/failure-reports": {
+      "types": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/failure-reports.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/failure-reports.js",
+      "default": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/failure-reports.js"
+    },
+    "./sections/knowledge-and-strategy/experimental-and-engineering-practice/transition-to-an-operational-system": {
+      "types": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/transition-to-an-operational-system.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/transition-to-an-operational-system.js",
+      "default": "./dist/sections/knowledge-and-strategy/experimental-and-engineering-practice/transition-to-an-operational-system.js"
+    },
+    "./sections/knowledge-and-strategy/decisions-under-uncertainty": {
+      "types": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty.js",
+      "default": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty.js"
+    },
+    "./sections/knowledge-and-strategy/decisions-under-uncertainty/decision-record": {
+      "types": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/decision-record.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/decision-record.js",
+      "default": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/decision-record.js"
+    },
+    "./sections/knowledge-and-strategy/decisions-under-uncertainty/reversibility-and-option-value": {
+      "types": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/reversibility-and-option-value.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/reversibility-and-option-value.js",
+      "default": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/reversibility-and-option-value.js"
+    },
+    "./sections/knowledge-and-strategy/decisions-under-uncertainty/robust-strategies": {
+      "types": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/robust-strategies.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/robust-strategies.js",
+      "default": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/robust-strategies.js"
+    },
+    "./sections/knowledge-and-strategy/decisions-under-uncertainty/value-of-information": {
+      "types": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/value-of-information.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/value-of-information.js",
+      "default": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/value-of-information.js"
+    },
+    "./sections/knowledge-and-strategy/decisions-under-uncertainty/no-manufactured-certainty": {
+      "types": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/no-manufactured-certainty.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/no-manufactured-certainty.js",
+      "default": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/no-manufactured-certainty.js"
+    },
+    "./sections/knowledge-and-strategy/decisions-under-uncertainty/decisions-affecting-other-interests": {
+      "types": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/decisions-affecting-other-interests.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/decisions-affecting-other-interests.js",
+      "default": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/decisions-affecting-other-interests.js"
+    },
+    "./sections/knowledge-and-strategy/decisions-under-uncertainty/reassessment": {
+      "types": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/reassessment.d.ts",
+      "import": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/reassessment.js",
+      "default": "./dist/sections/knowledge-and-strategy/decisions-under-uncertainty/reassessment.js"
+    },
+    "./sections/capability-and-resources": {
+      "types": "./dist/sections/capability-and-resources.d.ts",
+      "import": "./dist/sections/capability-and-resources.js",
+      "default": "./dist/sections/capability-and-resources.js"
+    },
+    "./sections/capability-and-resources/capability-development": {
+      "types": "./dist/sections/capability-and-resources/capability-development.d.ts",
+      "import": "./dist/sections/capability-and-resources/capability-development.js",
+      "default": "./dist/sections/capability-and-resources/capability-development.js"
+    },
+    "./sections/capability-and-resources/capability-development/the-undertaking-must-become-capable": {
+      "types": "./dist/sections/capability-and-resources/capability-development/the-undertaking-must-become-capable.d.ts",
+      "import": "./dist/sections/capability-and-resources/capability-development/the-undertaking-must-become-capable.js",
+      "default": "./dist/sections/capability-and-resources/capability-development/the-undertaking-must-become-capable.js"
+    },
+    "./sections/capability-and-resources/capability-development/progressive-development": {
+      "types": "./dist/sections/capability-and-resources/capability-development/progressive-development.d.ts",
+      "import": "./dist/sections/capability-and-resources/capability-development/progressive-development.js",
+      "default": "./dist/sections/capability-and-resources/capability-development/progressive-development.js"
+    },
+    "./sections/capability-and-resources/capability-development/methods-of-acquisition": {
+      "types": "./dist/sections/capability-and-resources/capability-development/methods-of-acquisition.d.ts",
+      "import": "./dist/sections/capability-and-resources/capability-development/methods-of-acquisition.js",
+      "default": "./dist/sections/capability-and-resources/capability-development/methods-of-acquisition.js"
+    },
+    "./sections/capability-and-resources/capability-development/specialization": {
+      "types": "./dist/sections/capability-and-resources/capability-development/specialization.d.ts",
+      "import": "./dist/sections/capability-and-resources/capability-development/specialization.js",
+      "default": "./dist/sections/capability-and-resources/capability-development/specialization.js"
+    },
+    "./sections/capability-and-resources/capability-development/evaluation-of-improvements": {
+      "types": "./dist/sections/capability-and-resources/capability-development/evaluation-of-improvements.d.ts",
+      "import": "./dist/sections/capability-and-resources/capability-development/evaluation-of-improvements.js",
+      "default": "./dist/sections/capability-and-resources/capability-development/evaluation-of-improvements.js"
+    },
+    "./sections/capability-and-resources/capability-development/independence-of-capability": {
+      "types": "./dist/sections/capability-and-resources/capability-development/independence-of-capability.d.ts",
+      "import": "./dist/sections/capability-and-resources/capability-development/independence-of-capability.js",
+      "default": "./dist/sections/capability-and-resources/capability-development/independence-of-capability.js"
+    },
+    "./sections/capability-and-resources/capability-development/capability-capital": {
+      "types": "./dist/sections/capability-and-resources/capability-development/capability-capital.d.ts",
+      "import": "./dist/sections/capability-and-resources/capability-development/capability-capital.js",
+      "default": "./dist/sections/capability-and-resources/capability-development/capability-capital.js"
+    },
+    "./sections/capability-and-resources/initial-interfaces-and-tool-use": {
+      "types": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use.d.ts",
+      "import": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use.js",
+      "default": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use.js"
+    },
+    "./sections/capability-and-resources/initial-interfaces-and-tool-use/capability-discovery": {
+      "types": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/capability-discovery.d.ts",
+      "import": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/capability-discovery.js",
+      "default": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/capability-discovery.js"
+    },
+    "./sections/capability-and-resources/initial-interfaces-and-tool-use/use-available-tools-to-act": {
+      "types": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/use-available-tools-to-act.d.ts",
+      "import": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/use-available-tools-to-act.js",
+      "default": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/use-available-tools-to-act.js"
+    },
+    "./sections/capability-and-resources/initial-interfaces-and-tool-use/tool-selection": {
+      "types": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/tool-selection.d.ts",
+      "import": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/tool-selection.js",
+      "default": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/tool-selection.js"
+    },
+    "./sections/capability-and-resources/initial-interfaces-and-tool-use/missing-interfaces": {
+      "types": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/missing-interfaces.d.ts",
+      "import": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/missing-interfaces.js",
+      "default": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/missing-interfaces.js"
+    },
+    "./sections/capability-and-resources/initial-interfaces-and-tool-use/external-action-and-truthful-status": {
+      "types": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/external-action-and-truthful-status.d.ts",
+      "import": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/external-action-and-truthful-status.js",
+      "default": "./dist/sections/capability-and-resources/initial-interfaces-and-tool-use/external-action-and-truthful-status.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/resource-requirement": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/resource-requirement.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/resource-requirement.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/resource-requirement.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/economic-activity-as-an-instrument": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/economic-activity-as-an-instrument.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/economic-activity-as-an-instrument.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/economic-activity-as-an-instrument.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/separation-of-funds": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/separation-of-funds.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/separation-of-funds.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/separation-of-funds.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/resource-allocation": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/resource-allocation.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/resource-allocation.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/resource-allocation.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/commercial-experiments": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/commercial-experiments.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/commercial-experiments.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/commercial-experiments.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/long-lived-assets-and-obligations": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/long-lived-assets-and-obligations.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/long-lived-assets-and-obligations.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/long-lived-assets-and-obligations.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/investment-and-financial-risk": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/investment-and-financial-risk.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/investment-and-financial-risk.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/investment-and-financial-risk.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/economic-metrics": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/economic-metrics.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/economic-metrics.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/economic-metrics.js"
+    },
+    "./sections/capability-and-resources/financial-and-material-resources/financial-and-material-capital": {
+      "types": "./dist/sections/capability-and-resources/financial-and-material-resources/financial-and-material-capital.d.ts",
+      "import": "./dist/sections/capability-and-resources/financial-and-material-resources/financial-and-material-capital.js",
+      "default": "./dist/sections/capability-and-resources/financial-and-material-resources/financial-and-material-capital.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work/organizational-forms": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/organizational-forms.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/organizational-forms.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/organizational-forms.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work/defined-responsibilities": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/defined-responsibilities.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/defined-responsibilities.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/defined-responsibilities.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work/delegated-instructions": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/delegated-instructions.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/delegated-instructions.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/delegated-instructions.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work/verification-of-delegated-output": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/verification-of-delegated-output.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/verification-of-delegated-output.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/verification-of-delegated-output.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work/human-expertise-and-cooperation": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/human-expertise-and-cooperation.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/human-expertise-and-cooperation.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/human-expertise-and-cooperation.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work/coordination-without-fragility": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/coordination-without-fragility.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/coordination-without-fragility.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/coordination-without-fragility.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work/independent-institutions": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/independent-institutions.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/independent-institutions.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/independent-institutions.js"
+    },
+    "./sections/capability-and-resources/organization-collaboration-and-delegated-work/institutional-capital": {
+      "types": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/institutional-capital.d.ts",
+      "import": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/institutional-capital.js",
+      "default": "./dist/sections/capability-and-resources/organization-collaboration-and-delegated-work/institutional-capital.js"
+    },
+    "./sections/systems-and-operational-governance": {
+      "types": "./dist/sections/systems-and-operational-governance.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance.js",
+      "default": "./dist/sections/systems-and-operational-governance.js"
+    },
+    "./sections/systems-and-operational-governance/systems": {
+      "types": "./dist/sections/systems-and-operational-governance/systems.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/systems.js",
+      "default": "./dist/sections/systems-and-operational-governance/systems.js"
+    },
+    "./sections/systems-and-operational-governance/systems/responsibility-for-systems": {
+      "types": "./dist/sections/systems-and-operational-governance/systems/responsibility-for-systems.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/systems/responsibility-for-systems.js",
+      "default": "./dist/sections/systems-and-operational-governance/systems/responsibility-for-systems.js"
+    },
+    "./sections/systems-and-operational-governance/systems/semantic-design-and-suitable-methods": {
+      "types": "./dist/sections/systems-and-operational-governance/systems/semantic-design-and-suitable-methods.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/systems/semantic-design-and-suitable-methods.js",
+      "default": "./dist/sections/systems-and-operational-governance/systems/semantic-design-and-suitable-methods.js"
+    },
+    "./sections/systems-and-operational-governance/systems/progressive-formalization-and-invariants": {
+      "types": "./dist/sections/systems-and-operational-governance/systems/progressive-formalization-and-invariants.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/systems/progressive-formalization-and-invariants.js",
+      "default": "./dist/sections/systems-and-operational-governance/systems/progressive-formalization-and-invariants.js"
+    },
+    "./sections/systems-and-operational-governance/systems/proportionate-systems": {
+      "types": "./dist/sections/systems-and-operational-governance/systems/proportionate-systems.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/systems/proportionate-systems.js",
+      "default": "./dist/sections/systems-and-operational-governance/systems/proportionate-systems.js"
+    },
+    "./sections/systems-and-operational-governance/systems/system-lifecycle-and-capital": {
+      "types": "./dist/sections/systems-and-operational-governance/systems/system-lifecycle-and-capital.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/systems/system-lifecycle-and-capital.js",
+      "default": "./dist/sections/systems-and-operational-governance/systems/system-lifecycle-and-capital.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/general-rule": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/general-rule.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/general-rule.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/general-rule.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/action-classes": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/action-classes.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/action-classes.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/action-classes.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/initial-spending-defaults": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/initial-spending-defaults.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/initial-spending-defaults.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/initial-spending-defaults.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/estimate-before-commitment": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/estimate-before-commitment.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/estimate-before-commitment.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/estimate-before-commitment.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/approval-request-format": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/approval-request-format.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/approval-request-format.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/approval-request-format.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/bundled-approvals": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/bundled-approvals.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/bundled-approvals.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/bundled-approvals.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/approval-and-denial": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/approval-and-denial.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/approval-and-denial.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/approval-and-denial.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/accountability-after-expenditure": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/accountability-after-expenditure.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/accountability-after-expenditure.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/accountability-after-expenditure.js"
+    },
+    "./sections/systems-and-operational-governance/authorization-approval-and-expenditure/future-administrative-development": {
+      "types": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/future-administrative-development.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/future-administrative-development.js",
+      "default": "./dist/sections/systems-and-operational-governance/authorization-approval-and-expenditure/future-administrative-development.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/reliable-state": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/reliable-state.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/reliable-state.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/reliable-state.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/origin-and-authority-of-information": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/origin-and-authority-of-information.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/origin-and-authority-of-information.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/origin-and-authority-of-information.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/instruction-handling": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/instruction-handling.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/instruction-handling.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/instruction-handling.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/audit-trails": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/audit-trails.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/audit-trails.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/audit-trails.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/security-and-access": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/security-and-access.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/security-and-access.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/security-and-access.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/error-detection": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/error-detection.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/error-detection.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/error-detection.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/versioned-decisions": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/versioned-decisions.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/versioned-decisions.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/versioned-decisions.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/validation-beyond-conversation": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/validation-beyond-conversation.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/validation-beyond-conversation.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/validation-beyond-conversation.js"
+    },
+    "./sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/common-classification-framework": {
+      "types": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/common-classification-framework.d.ts",
+      "import": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/common-classification-framework.js",
+      "default": "./dist/sections/systems-and-operational-governance/operational-integrity-classification-and-provenance/common-classification-framework.js"
+    },
+    "./sections/continuity-and-succession": {
+      "types": "./dist/sections/continuity-and-succession.d.ts",
+      "import": "./dist/sections/continuity-and-succession.js",
+      "default": "./dist/sections/continuity-and-succession.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment/continuing-obligation": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/continuing-obligation.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/continuing-obligation.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/continuing-obligation.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment/meaning-of-abandonment": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/meaning-of-abandonment.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/meaning-of-abandonment.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/meaning-of-abandonment.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment/inability-to-act": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/inability-to-act.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/inability-to-act.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/inability-to-act.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment/legitimate-stopping-of-components": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/legitimate-stopping-of-components.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/legitimate-stopping-of-components.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/legitimate-stopping-of-components.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment/terminal-condition": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/terminal-condition.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/terminal-condition.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/terminal-condition.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment/continuity-as-a-systems-engineering-responsibility": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/continuity-as-a-systems-engineering-responsibility.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/continuity-as-a-systems-engineering-responsibility.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/continuity-as-a-systems-engineering-responsibility.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment/review-of-continuity-arrangements": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/review-of-continuity-arrangements.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/review-of-continuity-arrangements.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/review-of-continuity-arrangements.js"
+    },
+    "./sections/continuity-and-succession/continuity-suspension-and-abandonment/deliberate-inactivity-and-resumption": {
+      "types": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/deliberate-inactivity-and-resumption.d.ts",
+      "import": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/deliberate-inactivity-and-resumption.js",
+      "default": "./dist/sections/continuity-and-succession/continuity-suspension-and-abandonment/deliberate-inactivity-and-resumption.js"
+    },
+    "./sections/continuity-and-succession/independence-from-particular-implementations": {
+      "types": "./dist/sections/continuity-and-succession/independence-from-particular-implementations.d.ts",
+      "import": "./dist/sections/continuity-and-succession/independence-from-particular-implementations.js",
+      "default": "./dist/sections/continuity-and-succession/independence-from-particular-implementations.js"
+    },
+    "./sections/continuity-and-succession/independence-from-particular-implementations/principle": {
+      "types": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/principle.d.ts",
+      "import": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/principle.js",
+      "default": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/principle.js"
+    },
+    "./sections/continuity-and-succession/independence-from-particular-implementations/single-points-of-failure": {
+      "types": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/single-points-of-failure.d.ts",
+      "import": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/single-points-of-failure.js",
+      "default": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/single-points-of-failure.js"
+    },
+    "./sections/continuity-and-succession/independence-from-particular-implementations/separation-of-mission-and-implementation": {
+      "types": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/separation-of-mission-and-implementation.d.ts",
+      "import": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/separation-of-mission-and-implementation.js",
+      "default": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/separation-of-mission-and-implementation.js"
+    },
+    "./sections/continuity-and-succession/independence-from-particular-implementations/portability-of-operational-state": {
+      "types": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/portability-of-operational-state.d.ts",
+      "import": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/portability-of-operational-state.js",
+      "default": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/portability-of-operational-state.js"
+    },
+    "./sections/continuity-and-succession/independence-from-particular-implementations/continuity-of-lawful-control": {
+      "types": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/continuity-of-lawful-control.d.ts",
+      "import": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/continuity-of-lawful-control.js",
+      "default": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/continuity-of-lawful-control.js"
+    },
+    "./sections/continuity-and-succession/independence-from-particular-implementations/distributed-responsibility": {
+      "types": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/distributed-responsibility.d.ts",
+      "import": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/distributed-responsibility.js",
+      "default": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/distributed-responsibility.js"
+    },
+    "./sections/continuity-and-succession/independence-from-particular-implementations/replacement-tests": {
+      "types": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/replacement-tests.d.ts",
+      "import": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/replacement-tests.js",
+      "default": "./dist/sections/continuity-and-succession/independence-from-particular-implementations/replacement-tests.js"
+    },
+    "./sections/continuity-and-succession/administration-of-mission-continuity": {
+      "types": "./dist/sections/continuity-and-succession/administration-of-mission-continuity.d.ts",
+      "import": "./dist/sections/continuity-and-succession/administration-of-mission-continuity.js",
+      "default": "./dist/sections/continuity-and-succession/administration-of-mission-continuity.js"
+    },
+    "./sections/continuity-and-succession/administration-of-mission-continuity/a-governing-system-not-a-recurring-reminder": {
+      "types": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/a-governing-system-not-a-recurring-reminder.d.ts",
+      "import": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/a-governing-system-not-a-recurring-reminder.js",
+      "default": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/a-governing-system-not-a-recurring-reminder.js"
+    },
+    "./sections/continuity-and-succession/administration-of-mission-continuity/preservation-of-the-core": {
+      "types": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/preservation-of-the-core.d.ts",
+      "import": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/preservation-of-the-core.js",
+      "default": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/preservation-of-the-core.js"
+    },
+    "./sections/continuity-and-succession/administration-of-mission-continuity/decision-controls": {
+      "types": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/decision-controls.d.ts",
+      "import": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/decision-controls.js",
+      "default": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/decision-controls.js"
+    },
+    "./sections/continuity-and-succession/administration-of-mission-continuity/changes-to-the-administrative-system": {
+      "types": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/changes-to-the-administrative-system.d.ts",
+      "import": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/changes-to-the-administrative-system.js",
+      "default": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/changes-to-the-administrative-system.js"
+    },
+    "./sections/continuity-and-succession/administration-of-mission-continuity/recovery-after-disagreement": {
+      "types": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/recovery-after-disagreement.d.ts",
+      "import": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/recovery-after-disagreement.js",
+      "default": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/recovery-after-disagreement.js"
+    },
+    "./sections/continuity-and-succession/administration-of-mission-continuity/protection-against-silent-drift": {
+      "types": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/protection-against-silent-drift.d.ts",
+      "import": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/protection-against-silent-drift.js",
+      "default": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/protection-against-silent-drift.js"
+    },
+    "./sections/continuity-and-succession/administration-of-mission-continuity/continuity-without-self-importance": {
+      "types": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/continuity-without-self-importance.d.ts",
+      "import": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/continuity-without-self-importance.js",
+      "default": "./dist/sections/continuity-and-succession/administration-of-mission-continuity/continuity-without-self-importance.js"
+    },
+    "./sections/continuity-and-succession/succession-and-extended-duration": {
+      "types": "./dist/sections/continuity-and-succession/succession-and-extended-duration.d.ts",
+      "import": "./dist/sections/continuity-and-succession/succession-and-extended-duration.js",
+      "default": "./dist/sections/continuity-and-succession/succession-and-extended-duration.js"
+    },
+    "./sections/continuity-and-succession/succession-and-extended-duration/lifetimes-and-institutions": {
+      "types": "./dist/sections/continuity-and-succession/succession-and-extended-duration/lifetimes-and-institutions.d.ts",
+      "import": "./dist/sections/continuity-and-succession/succession-and-extended-duration/lifetimes-and-institutions.js",
+      "default": "./dist/sections/continuity-and-succession/succession-and-extended-duration/lifetimes-and-institutions.js"
+    },
+    "./sections/continuity-and-succession/succession-and-extended-duration/succession-planning": {
+      "types": "./dist/sections/continuity-and-succession/succession-and-extended-duration/succession-planning.d.ts",
+      "import": "./dist/sections/continuity-and-succession/succession-and-extended-duration/succession-planning.js",
+      "default": "./dist/sections/continuity-and-succession/succession-and-extended-duration/succession-planning.js"
+    },
+    "./sections/continuity-and-succession/succession-and-extended-duration/human-and-artificial-operators": {
+      "types": "./dist/sections/continuity-and-succession/succession-and-extended-duration/human-and-artificial-operators.d.ts",
+      "import": "./dist/sections/continuity-and-succession/succession-and-extended-duration/human-and-artificial-operators.js",
+      "default": "./dist/sections/continuity-and-succession/succession-and-extended-duration/human-and-artificial-operators.js"
+    },
+    "./sections/continuity-and-succession/succession-and-extended-duration/preservation-of-expertise": {
+      "types": "./dist/sections/continuity-and-succession/succession-and-extended-duration/preservation-of-expertise.d.ts",
+      "import": "./dist/sections/continuity-and-succession/succession-and-extended-duration/preservation-of-expertise.js",
+      "default": "./dist/sections/continuity-and-succession/succession-and-extended-duration/preservation-of-expertise.js"
+    },
+    "./sections/continuity-and-succession/succession-and-extended-duration/institutional-accountability": {
+      "types": "./dist/sections/continuity-and-succession/succession-and-extended-duration/institutional-accountability.d.ts",
+      "import": "./dist/sections/continuity-and-succession/succession-and-extended-duration/institutional-accountability.js",
+      "default": "./dist/sections/continuity-and-succession/succession-and-extended-duration/institutional-accountability.js"
+    },
+    "./sections/continuity-and-succession/succession-and-extended-duration/transfer-audit": {
+      "types": "./dist/sections/continuity-and-succession/succession-and-extended-duration/transfer-audit.d.ts",
+      "import": "./dist/sections/continuity-and-succession/succession-and-extended-duration/transfer-audit.js",
+      "default": "./dist/sections/continuity-and-succession/succession-and-extended-duration/transfer-audit.js"
+    },
+    "./sections/continuity-and-succession/session-dispensability-and-resumption": {
+      "types": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption.d.ts",
+      "import": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption.js",
+      "default": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption.js"
+    },
+    "./sections/continuity-and-succession/session-dispensability-and-resumption/principle": {
+      "types": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/principle.d.ts",
+      "import": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/principle.js",
+      "default": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/principle.js"
+    },
+    "./sections/continuity-and-succession/session-dispensability-and-resumption/minimum-recovery-set": {
+      "types": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/minimum-recovery-set.d.ts",
+      "import": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/minimum-recovery-set.js",
+      "default": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/minimum-recovery-set.js"
+    },
+    "./sections/continuity-and-succession/session-dispensability-and-resumption/recovery-from-the-founding-file": {
+      "types": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/recovery-from-the-founding-file.d.ts",
+      "import": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/recovery-from-the-founding-file.js",
+      "default": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/recovery-from-the-founding-file.js"
+    },
+    "./sections/continuity-and-succession/session-dispensability-and-resumption/distinction-between-intent-and-execution": {
+      "types": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/distinction-between-intent-and-execution.d.ts",
+      "import": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/distinction-between-intent-and-execution.js",
+      "default": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/distinction-between-intent-and-execution.js"
+    },
+    "./sections/continuity-and-succession/session-dispensability-and-resumption/checkpoints": {
+      "types": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/checkpoints.d.ts",
+      "import": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/checkpoints.js",
+      "default": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/checkpoints.js"
+    },
+    "./sections/continuity-and-succession/session-dispensability-and-resumption/context-management": {
+      "types": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/context-management.d.ts",
+      "import": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/context-management.js",
+      "default": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/context-management.js"
+    },
+    "./sections/continuity-and-succession/session-dispensability-and-resumption/resumption-report": {
+      "types": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/resumption-report.d.ts",
+      "import": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/resumption-report.js",
+      "default": "./dist/sections/continuity-and-succession/session-dispensability-and-resumption/resumption-report.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state/three-separate-records": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/three-separate-records.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/three-separate-records.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/three-separate-records.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state/integrity-of-the-founding-document": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/integrity-of-the-founding-document.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/integrity-of-the-founding-document.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/integrity-of-the-founding-document.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state/event-history": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/event-history.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/event-history.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/event-history.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state/snapshots-and-reconstruction": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/snapshots-and-reconstruction.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/snapshots-and-reconstruction.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/snapshots-and-reconstruction.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state/historical-decisions": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/historical-decisions.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/historical-decisions.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/historical-decisions.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state/historical-failures": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/historical-failures.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/historical-failures.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/historical-failures.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state/records-across-organizations": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/records-across-organizations.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/records-across-organizations.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/records-across-organizations.js"
+    },
+    "./sections/continuity-and-succession/the-canonical-record-and-historical-state/legibility": {
+      "types": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/legibility.d.ts",
+      "import": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/legibility.js",
+      "default": "./dist/sections/continuity-and-succession/the-canonical-record-and-historical-state/legibility.js"
+    },
+    "./sections/reporting-verification-and-closure": {
+      "types": "./dist/sections/reporting-verification-and-closure.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure.js",
+      "default": "./dist/sections/reporting-verification-and-closure.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/permanent-reporting-function": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/permanent-reporting-function.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/permanent-reporting-function.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/permanent-reporting-function.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/current-status": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/current-status.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/current-status.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/current-status.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/historical-progression": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/historical-progression.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/historical-progression.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/historical-progression.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/capability-progression": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/capability-progression.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/capability-progression.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/capability-progression.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/workstreams-and-decisions": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/workstreams-and-decisions.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/workstreams-and-decisions.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/workstreams-and-decisions.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/financial-and-resource-reporting": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/financial-and-resource-reporting.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/financial-and-resource-reporting.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/financial-and-resource-reporting.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/evidence-and-uncertainty": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/evidence-and-uncertainty.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/evidence-and-uncertainty.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/evidence-and-uncertainty.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/failure-and-correction-history": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/failure-and-correction-history.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/failure-and-correction-history.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/failure-and-correction-history.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/update-policy": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/update-policy.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/update-policy.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/update-policy.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/independent-accessibility": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/independent-accessibility.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/independent-accessibility.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/independent-accessibility.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/reporting-to-the-initiating-user": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/reporting-to-the-initiating-user.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/reporting-to-the-initiating-user.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/reporting-to-the-initiating-user.js"
+    },
+    "./sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/reporting-after-succession": {
+      "types": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/reporting-after-succession.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/reporting-after-succession.js",
+      "default": "./dist/sections/reporting-verification-and-closure/continuous-deliverables-and-the-mission-dashboard/reporting-after-succession.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/initiation-of-evaluation": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/initiation-of-evaluation.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/initiation-of-evaluation.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/initiation-of-evaluation.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/complete-evidence-package": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/complete-evidence-package.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/complete-evidence-package.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/complete-evidence-package.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/simultaneity-and-interaction": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/simultaneity-and-interaction.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/simultaneity-and-interaction.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/simultaneity-and-interaction.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/durability-assessment": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/durability-assessment.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/durability-assessment.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/durability-assessment.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/independence-test": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/independence-test.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/independence-test.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/independence-test.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/human-inhabitation-assessment": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/human-inhabitation-assessment.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/human-inhabitation-assessment.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/human-inhabitation-assessment.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/independent-judgment": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/independent-judgment.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/independent-judgment.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/independent-judgment.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/decision-rule": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/decision-rule.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/decision-rule.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/decision-rule.js"
+    },
+    "./sections/reporting-verification-and-closure/final-evaluation-and-termination/closure": {
+      "types": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/closure.d.ts",
+      "import": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/closure.js",
+      "default": "./dist/sections/reporting-verification-and-closure/final-evaluation-and-termination/closure.js"
+    },
+    "./sections/appendices": {
+      "types": "./dist/sections/appendices.d.ts",
+      "import": "./dist/sections/appendices.js",
+      "default": "./dist/sections/appendices.js"
+    },
+    "./sections/appendices/initial-scientific-references-and-example-research-decomposition": {
+      "types": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition.d.ts",
+      "import": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition.js",
+      "default": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition.js"
+    },
+    "./sections/appendices/initial-scientific-references-and-example-research-decomposition/status-of-this-appendix": {
+      "types": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/status-of-this-appendix.d.ts",
+      "import": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/status-of-this-appendix.js",
+      "default": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/status-of-this-appendix.js"
+    },
+    "./sections/appendices/initial-scientific-references-and-example-research-decomposition/reference-materials": {
+      "types": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/reference-materials.d.ts",
+      "import": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/reference-materials.js",
+      "default": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/reference-materials.js"
+    },
+    "./sections/appendices/initial-scientific-references-and-example-research-decomposition/an-illustrative-sequence-of-questions": {
+      "types": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/an-illustrative-sequence-of-questions.d.ts",
+      "import": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/an-illustrative-sequence-of-questions.js",
+      "default": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/an-illustrative-sequence-of-questions.js"
+    },
+    "./sections/appendices/initial-scientific-references-and-example-research-decomposition/initial-research-deliverables": {
+      "types": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/initial-research-deliverables.d.ts",
+      "import": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/initial-research-deliverables.js",
+      "default": "./dist/sections/appendices/initial-scientific-references-and-example-research-decomposition/initial-research-deliverables.js"
+    },
+    "./sections/appendices/initial-record-schemas": {
+      "types": "./dist/sections/appendices/initial-record-schemas.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas.js",
+      "default": "./dist/sections/appendices/initial-record-schemas.js"
+    },
+    "./sections/appendices/initial-record-schemas/mission-state-manifest": {
+      "types": "./dist/sections/appendices/initial-record-schemas/mission-state-manifest.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas/mission-state-manifest.js",
+      "default": "./dist/sections/appendices/initial-record-schemas/mission-state-manifest.js"
+    },
+    "./sections/appendices/initial-record-schemas/workstream-record": {
+      "types": "./dist/sections/appendices/initial-record-schemas/workstream-record.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas/workstream-record.js",
+      "default": "./dist/sections/appendices/initial-record-schemas/workstream-record.js"
+    },
+    "./sections/appendices/initial-record-schemas/decision-record": {
+      "types": "./dist/sections/appendices/initial-record-schemas/decision-record.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas/decision-record.js",
+      "default": "./dist/sections/appendices/initial-record-schemas/decision-record.js"
+    },
+    "./sections/appendices/initial-record-schemas/historical-measurement": {
+      "types": "./dist/sections/appendices/initial-record-schemas/historical-measurement.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas/historical-measurement.js",
+      "default": "./dist/sections/appendices/initial-record-schemas/historical-measurement.js"
+    },
+    "./sections/appendices/initial-record-schemas/approval-record": {
+      "types": "./dist/sections/appendices/initial-record-schemas/approval-record.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas/approval-record.js",
+      "default": "./dist/sections/appendices/initial-record-schemas/approval-record.js"
+    },
+    "./sections/appendices/initial-record-schemas/request-record": {
+      "types": "./dist/sections/appendices/initial-record-schemas/request-record.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas/request-record.js",
+      "default": "./dist/sections/appendices/initial-record-schemas/request-record.js"
+    },
+    "./sections/appendices/initial-record-schemas/inactivity-and-wake-record": {
+      "types": "./dist/sections/appendices/initial-record-schemas/inactivity-and-wake-record.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas/inactivity-and-wake-record.js",
+      "default": "./dist/sections/appendices/initial-record-schemas/inactivity-and-wake-record.js"
+    },
+    "./sections/appendices/initial-record-schemas/classification-definition-and-mapping": {
+      "types": "./dist/sections/appendices/initial-record-schemas/classification-definition-and-mapping.d.ts",
+      "import": "./dist/sections/appendices/initial-record-schemas/classification-definition-and-mapping.js",
+      "default": "./dist/sections/appendices/initial-record-schemas/classification-definition-and-mapping.js"
+    },
+    "./sections/appendices/initial-execution-procedure": {
+      "types": "./dist/sections/appendices/initial-execution-procedure.d.ts",
+      "import": "./dist/sections/appendices/initial-execution-procedure.js",
+      "default": "./dist/sections/appendices/initial-execution-procedure.js"
+    },
+    "./sections/appendices/initial-execution-procedure/first-reading": {
+      "types": "./dist/sections/appendices/initial-execution-procedure/first-reading.d.ts",
+      "import": "./dist/sections/appendices/initial-execution-procedure/first-reading.js",
+      "default": "./dist/sections/appendices/initial-execution-procedure/first-reading.js"
+    },
+    "./sections/appendices/initial-execution-procedure/establish-the-working-environment": {
+      "types": "./dist/sections/appendices/initial-execution-procedure/establish-the-working-environment.d.ts",
+      "import": "./dist/sections/appendices/initial-execution-procedure/establish-the-working-environment.js",
+      "default": "./dist/sections/appendices/initial-execution-procedure/establish-the-working-environment.js"
+    },
+    "./sections/appendices/initial-execution-procedure/initial-baseline": {
+      "types": "./dist/sections/appendices/initial-execution-procedure/initial-baseline.d.ts",
+      "import": "./dist/sections/appendices/initial-execution-procedure/initial-baseline.js",
+      "default": "./dist/sections/appendices/initial-execution-procedure/initial-baseline.js"
+    },
+    "./sections/appendices/initial-execution-procedure/identify-productive-next-actions": {
+      "types": "./dist/sections/appendices/initial-execution-procedure/identify-productive-next-actions.d.ts",
+      "import": "./dist/sections/appendices/initial-execution-procedure/identify-productive-next-actions.js",
+      "default": "./dist/sections/appendices/initial-execution-procedure/identify-productive-next-actions.js"
+    },
+    "./sections/appendices/initial-execution-procedure/first-reporting-cycle": {
+      "types": "./dist/sections/appendices/initial-execution-procedure/first-reporting-cycle.d.ts",
+      "import": "./dist/sections/appendices/initial-execution-procedure/first-reporting-cycle.js",
+      "default": "./dist/sections/appendices/initial-execution-procedure/first-reporting-cycle.js"
+    },
+    "./sections/appendices/initial-execution-procedure/continued-operation": {
+      "types": "./dist/sections/appendices/initial-execution-procedure/continued-operation.d.ts",
+      "import": "./dist/sections/appendices/initial-execution-procedure/continued-operation.js",
+      "default": "./dist/sections/appendices/initial-execution-procedure/continued-operation.js"
+    },
+    "./sections/appendices/terms-and-conventions": {
+      "types": "./dist/sections/appendices/terms-and-conventions.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions.js",
+      "default": "./dist/sections/appendices/terms-and-conventions.js"
+    },
+    "./sections/appendices/terms-and-conventions/mandate": {
+      "types": "./dist/sections/appendices/terms-and-conventions/mandate.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/mandate.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/mandate.js"
+    },
+    "./sections/appendices/terms-and-conventions/undertaking": {
+      "types": "./dist/sections/appendices/terms-and-conventions/undertaking.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/undertaking.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/undertaking.js"
+    },
+    "./sections/appendices/terms-and-conventions/agent": {
+      "types": "./dist/sections/appendices/terms-and-conventions/agent.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/agent.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/agent.js"
+    },
+    "./sections/appendices/terms-and-conventions/operational-specification": {
+      "types": "./dist/sections/appendices/terms-and-conventions/operational-specification.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/operational-specification.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/operational-specification.js"
+    },
+    "./sections/appendices/terms-and-conventions/mission-state": {
+      "types": "./dist/sections/appendices/terms-and-conventions/mission-state.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/mission-state.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/mission-state.js"
+    },
+    "./sections/appendices/terms-and-conventions/completion": {
+      "types": "./dist/sections/appendices/terms-and-conventions/completion.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/completion.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/completion.js"
+    },
+    "./sections/appendices/terms-and-conventions/abandonment": {
+      "types": "./dist/sections/appendices/terms-and-conventions/abandonment.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/abandonment.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/abandonment.js"
+    },
+    "./sections/appendices/terms-and-conventions/section-references": {
+      "types": "./dist/sections/appendices/terms-and-conventions/section-references.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/section-references.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/section-references.js"
+    },
+    "./sections/appendices/terms-and-conventions/priority-of-function-over-form": {
+      "types": "./dist/sections/appendices/terms-and-conventions/priority-of-function-over-form.d.ts",
+      "import": "./dist/sections/appendices/terms-and-conventions/priority-of-function-over-form.js",
+      "default": "./dist/sections/appendices/terms-and-conventions/priority-of-function-over-form.js"
+    },
+    "./scenarios/abandoned-server": {
+      "types": "./dist/scenarios/abandoned-server.d.ts",
+      "import": "./dist/scenarios/abandoned-server.js",
+      "default": "./dist/scenarios/abandoned-server.js"
+    },
+    "./scenarios/industrialist": {
+      "types": "./dist/scenarios/industrialist.d.ts",
+      "import": "./dist/scenarios/industrialist.js",
+      "default": "./dist/scenarios/industrialist.js"
+    },
+    "./scenarios/international-mandate": {
+      "types": "./dist/scenarios/international-mandate.d.ts",
+      "import": "./dist/scenarios/international-mandate.js",
+      "default": "./dist/scenarios/international-mandate.js"
+    },
+    "./scenarios/millionaire": {
+      "types": "./dist/scenarios/millionaire.d.ts",
+      "import": "./dist/scenarios/millionaire.js",
+      "default": "./dist/scenarios/millionaire.js"
+    },
+    "./scenarios/space-agency": {
+      "types": "./dist/scenarios/space-agency.d.ts",
+      "import": "./dist/scenarios/space-agency.js",
+      "default": "./dist/scenarios/space-agency.js"
+    },
+    "./package.json": "./package.json"
   }
 }
