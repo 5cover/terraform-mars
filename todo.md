@@ -53,7 +53,7 @@ relates to systems.
 
 establish software/code to validate internal consistency subject to declared invariants. such as that knowledger thing, i think the prompt should name the concept in a way the agent may eventually find optimal to render executable, without giving it an exact solution.
 
-Simon define his expectations. He seldom defines the implementation of the systems that satisfy them.
+The user defines his expectations. He seldom defines the implementation of the systems that satisfy them.
 
 ## the notion of capital
 
