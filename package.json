@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm majas -4 fs -2 md src -o Terraform_Mars.md",
+    "build": "pnpm majas -4 fs -2 md src -o Terraform_Mars.md && node scripts/check-references.ts Terraform_Mars.md",
     "bootstrap": "pnpm majas -2 fs -4 md -o src {original_terraform_mars}.md"
   },
   "keywords": [],
@@ -20,8 +20,7 @@
   "packageManager": "pnpm@12.18.0",
   "type": "module",
   "devDependencies": {
-    "@types/node": "^26.6.6",
-    "tsx": "^4.23.15"
+    "@types/node": "^26.6.6"
   },
   "dependencies": {
     "majas": "^2.0.0",

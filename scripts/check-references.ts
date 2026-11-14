@@ -37,7 +37,7 @@ import { unified } from 'unified'
 import remarkParse from 'remark-parse'
 import { visit } from 'unist-util-visit'
 
-const IDENTIFIER = /^§(?:[A-Z]|0|[1-9][0-9]*)(?:\.(?:[A-Z]|0|[1-9][0-9]*))*$/
+const IDENTIFIER = /^§(?:[A-Z]|[0-9]+)(?:\.(?:[A-Z]|[0-9]+))*$/
 const CANDIDATE = /^§[\p{L}\p{N}._-]*/u
 
 type Location = { line: number; column: number; offset: number }
@@ -214,8 +214,6 @@ function main(): void {
     if (!previous) {
       if (kind === 'letter' && current !== 'A') {
         problem('sequence', at.offset, `First ${parent || 'top-level'} letter heading is ${id}; expected token A`)
-      } else if (kind === 'number' && current !== '0' && current !== '1') {
-        problem('sequence', at.offset, `First ${parent || 'top-level'} numeric heading is ${id}; expected token 0 or 1`)
       }
     } else {
       const previousValue = kind === 'letter' ? BigInt(previous.token.charCodeAt(0) - 65) : BigInt(previous.token)
