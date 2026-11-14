@@ -89,6 +89,11 @@ describe('compose', () => {
 
   it('rejects invalid values and heading depth beyond Markdown limits', () => {
     assert.throws(() => compose(42 as never), /Invalid composition/);
+    assert.throws(
+      () => compose({ number: 'binary', children: section('Invalid') } as never),
+      /Unsupported number style/
+    );
+    assert.throws(() => compose({ prefix: 1, children: section('Invalid') } as never), /prefix must be a string/);
     assert.throws(() => compose([[[[[[section('Too deep')]]]]]]), /heading level 6/);
   });
 });

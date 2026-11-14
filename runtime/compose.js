@@ -102,6 +102,12 @@ function renderScope(items, level, context) {
     }
 
     if (isConfiguration(item)) {
+      if (item.number !== undefined && item.number !== null && !['roman', 'arab', 'latin'].includes(item.number)) {
+        throw new TypeError(`Unsupported number style: ${String(item.number)}`);
+      }
+      if (item.prefix !== undefined && typeof item.prefix !== 'string') {
+        throw new TypeError('Composition prefix must be a string');
+      }
       const numberChanged = item.number !== undefined;
       const configured = {
         number: numberChanged ? item.number : itemContext.number,
