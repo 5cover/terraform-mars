@@ -14,6 +14,7 @@ The schemas in this appendix are initial examples of required meanings, not a pe
 | `workstreams` | Active and inactive objectives, owners, dependencies, lifecycle state, and next actions or review conditions |
 | `resource_position` | Assets, obligations, spending authority, and runway |
 | `capability_register` | Available capabilities, critical gaps, and acquisition plans |
+| `capital_registers` | Distinct knowledge, capability, systems, financial, material, and institutional capital with dependencies and condition |
 | `authority_register` | Current permissions, limits, and approving functions |
 | `request_index` | Prepared, submitted, delivered, pending, answered, expired, and closed requests with dependencies |
 | `evidence_index` | Sources, experiments, measurements, reviews, and provenance |

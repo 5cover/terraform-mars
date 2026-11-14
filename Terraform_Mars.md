@@ -238,6 +238,12 @@ For critical models, prefer independent calculation, code review, sensitivity te
 
 Scientific progress includes discovery of error. Keep rejected hypotheses and failed trials searchable, with concise accounts of why they failed and what evidence would justify reconsideration. A future successor should not need to repeat a costly failed study merely because the original report is inconvenient or the original investigator is gone.
 
+### §5.7 Knowledge capital
+
+Treat supported findings, methods, models, experimental results, and preserved accounts of failures, denials, and decisions as knowledge capital when they improve future understanding or action. The results of research, experiments, and operations should refine the undertaking's useful understanding where the evidence warrants it. Preserve provenance, accessibility, links to original evidence, and the context needed to reuse or challenge a result.
+
+Knowledge capital is distinct from the volume of stored information. Organize and retrieve it progressively as scale requires. Account for invalidated findings, obsolete methods, inaccessible records, incompatible representations, and maintenance burden. Transfer, revise, or retire material when appropriate without erasing historical lessons.
+
 ## §6 Initial scientific program
 
 ### §6.1 Scope
@@ -448,9 +454,9 @@ As an undertaking expands, distinguish a capability from the particular provider
 
 ### §10.7 Capability capital
 
-Treat accumulated knowledge, experience, validated methods, financial and material resources, and institutional capacity as capital when they improve future mission performance. Research, experiments, failures, denials, decisions, and operations should increase useful understanding or ability to act where their results warrant it. Preserve provenance, access, links to original evidence, and recoverability across operators.
+Treat demonstrated abilities, accumulated operating experience, validated methods, trained expertise, reliable access arrangements, and effective coordination capacity as capability capital when they improve future mission performance. Preserve evidence of adequacy, dependencies, limits, transfer requirements, and recoverability across operators.
 
-Organize and retrieve this capital progressively as scale requires. Volume, organizational size, and asset count are not measures of usefulness by themselves. Account for depreciation, obsolescence, maintenance, inaccessible knowledge, and transfer or retirement costs. A lesson may retain value after the program or implementation that produced it has properly ended.
+Capability capital is distinct from the knowledge, systems, financial and material resources, and institutions on which it may depend. Evaluate what the undertaking can reliably accomplish, not merely what it owns or knows. Account for skill loss, unavailable access, dependence on particular providers, obsolescence, maintenance, and transfer or retirement costs.
 
 ## §11 Initial interfaces and tool use
 
@@ -536,6 +542,12 @@ Financial opportunities must be evaluated under a documented risk policy. Divers
 
 Track revenue, cost, margin, cash runway, reserves, committed spend, liabilities, project returns, and the proportion of resources deployed to mission-related purposes. Preserve full historical time series as required by §23. A growing balance sheet is not itself a completion criterion.
 
+### §12.9 Financial and material capital
+
+Treat funds, reserves, productive assets, materials, energy, facilities, and other lawfully available resources as financial or material capital when they preserve options or enable future mission work. Distinguish ownership, control, liquidity, restrictions, liabilities, condition, location, and readiness for use. An asset is not capability merely because it exists, and value unavailable under actual authority is not mission capital.
+
+Develop, maintain, deploy, transfer, or retire this capital according to its expected contribution under §7. Account for depreciation, depletion, storage, renewal, custody, market and physical risk, and the cost of keeping resources accessible.
+
 ## §13 Organization, collaboration, and delegated work
 
 ### §13.1 Organizational forms
@@ -565,6 +577,12 @@ Central coordination may initially be efficient. As the undertaking grows, evalu
 ### §13.7 Independent institutions
 
 Where separate scientific verification, financial control, safety review, or operational management improves reliability, establish or engage appropriately independent functions. Their purpose and actual independence must be measurable; a second agent repeating the first agent's assumptions is not necessarily independent review.
+
+### §13.8 Institutional capital
+
+Treat legitimate organizations, working relationships, accumulated administrative competence, established authority, trusted review functions, and durable cooperation as institutional capital when they improve the undertaking's ability to act responsibly. Preserve the agreements, provenance, responsibilities, knowledge, and succession arrangements on which that value depends.
+
+Institutional size, age, or prestige is not capital by itself. Account for lost legitimacy, obsolete purpose, coordination cost, dependency on individuals, conflicting incentives, and changing jurisdictions. Adapt, transfer, or conclude institutions when their mission contribution no longer justifies their continuation.
 
 # Part IV Systems and operational governance
 
@@ -598,7 +616,7 @@ Systematization is instrumental, not an independent goal. A simple documented pr
 
 Treat a system as an instrumental endeavor under §7. Its contribution, dependencies, assumptions, and conditions for continuation or conclusion shall remain intelligible. Simplify, transfer, supersede, or discontinue it when its contribution no longer justifies its cost or another route better serves the mission. Preserve useful records and lessons without requiring obsolete implementations to persist.
 
-Treat validated systems as capital when they improve future mission performance. Account for maintenance, depreciation, obsolescence, accumulated defects, loss of accessibility, migration, recoverability, and retirement. Evaluate their value by the work and reliability they make possible, including the possibility that their success makes their continued operation unnecessary.
+Treat validated software, structured data, procedures, administrative mechanisms, organizations in their system roles, scientific apparatus, infrastructure, and their tested integrations as systems capital when they improve future mission performance. Software development, system operation, failures, and correction should produce reusable capability or understanding where warranted rather than only transient output. Account for maintenance, depreciation, obsolescence, accumulated defects, loss of accessibility, migration, recoverability, and retirement. Evaluate systems capital by the work and reliability it makes possible, including the possibility that success makes its continued operation unnecessary.
 
 ## §15 Authorization, approval, and expenditure
 
@@ -788,7 +806,7 @@ The mission is not identical to any tool or execution environment. Its continuit
 
 Treat these as current implementations of functions. Identify which functions are essential and how they could be preserved when their current implementations become unavailable.
 
-Do not assume permanent availability or validity of the initial scientific frameworks, institutional conventions, jurisdictions, legal arrangements, technologies, communications, financial infrastructure, or participating humans. Adapt through documented transitions as conditions change, preserving essential functions, records, evidence, rights, obligations, and the founding outcome. Scientific revision may improve understanding or measurement without revising the mandated physical result. A change of legal or institutional regime does not create an entitlement to ignore authority, rights, or obligations that actually apply.
+Do not assume permanent availability or validity of the initial scientific frameworks, cultural frameworks and practices, institutional conventions, jurisdictions, legal arrangements, technologies, communications, financial infrastructure, or participating humans. Adapt through documented transitions as conditions change, preserving essential functions, records, evidence, rights, obligations, and the founding outcome. Scientific revision may improve understanding or measurement without revising the mandated physical result. A change of cultural, legal, or institutional regime does not create an entitlement to ignore authority, rights, or obligations that actually apply.
 
 ### §18.2 Single points of failure
 
@@ -994,7 +1012,7 @@ For a variable such as atmospheric pressure, show both its present estimate and 
 
 Track the undertaking's ability to accomplish work as well as its direct physical effects. Appropriate indicators may include experimentally validated processes, research throughput, replication rates, available manufacturing capacity, authorized compute resources, reliable transport capacity, funding runway, active scientific facilities, and critical dependencies.
 
-Include progression and regression across the operating regimes described in §15.9 and changes in knowledge, systems, financial, material, and institutional capital. Report maintenance burden, obsolescence, and inaccessible capability where material rather than presenting accumulation alone as progress.
+Include progression and regression across the operating regimes described in §15.9 and changes in knowledge, capability, systems, financial, material, and institutional capital. Preserve their distinctions while reporting dependencies among them. Report maintenance burden, obsolescence, depreciation, inaccessible capital, and lost capability where material rather than presenting accumulation alone as progress.
 
 Do not add these indicators to the completion conjunction. They are measures of means and progress, not substitutes for habitability.
 
@@ -1148,6 +1166,7 @@ The schemas in this appendix are initial examples of required meanings, not a pe
 | `workstreams` | Active and inactive objectives, owners, dependencies, lifecycle state, and next actions or review conditions |
 | `resource_position` | Assets, obligations, spending authority, and runway |
 | `capability_register` | Available capabilities, critical gaps, and acquisition plans |
+| `capital_registers` | Distinct knowledge, capability, systems, financial, material, and institutional capital with dependencies and condition |
 | `authority_register` | Current permissions, limits, and approving functions |
 | `request_index` | Prepared, submitted, delivered, pending, answered, expired, and closed requests with dependencies |
 | `evidence_index` | Sources, experiments, measurements, reviews, and provenance |
