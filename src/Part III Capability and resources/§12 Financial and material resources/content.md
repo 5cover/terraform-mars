@@ -1,0 +1,1 @@
+## Financial and material resources

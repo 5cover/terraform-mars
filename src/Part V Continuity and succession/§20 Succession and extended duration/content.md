@@ -1,0 +1,1 @@
+## Succession and extended duration

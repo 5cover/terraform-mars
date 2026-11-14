@@ -1,4 +1,4 @@
-### §A.3 An illustrative sequence of questions
+### An illustrative sequence of questions
 
 The following is one way to organize inquiry, not a required sequence of construction:
 
@@ -10,6 +10,6 @@ The following is one way to organize inquiry, not a required sequence of constru
 6. What biological processes could survive and propagate at successive stages? Determine when biotic contributions would be materially relevant to atmospheric composition and nutrient cycling.
 7. What industrial capabilities, transport capacity, energy sources, and institutional arrangements would be required at each scale?
 8. What tests could distinguish genuinely self-sustaining environmental states from temporary industrially maintained states?
-9. What observations and independent review would justify a final claim that all conditions of §3 hold together?
+9. What observations and independent review would justify a final claim that all conditions of $mandate-and-completion/conditions-of-completion.md hold together?
 
 A negative answer to one question should update the dependency map and the strategic options. It need not halt investigation of every alternative.

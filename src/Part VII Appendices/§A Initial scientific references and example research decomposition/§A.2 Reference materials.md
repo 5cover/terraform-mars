@@ -1,4 +1,4 @@
-### §A.2 Reference materials
+### Reference materials
 
 1. Christopher P. McKay, Owen B. Toon, and James F. Kasting, "Making Mars habitable," *Nature* 352, 489-496 (1991). DOI: [10.1038/352489a0](https://doi.org/10.1038/352489a0). This work considers how greenhouse warming, planetary volatile inventories, and long-term biological processes might contribute to habitability. It is a scientific proposal, not a demonstrated construction plan.
 

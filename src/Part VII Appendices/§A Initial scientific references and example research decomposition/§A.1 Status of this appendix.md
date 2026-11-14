@@ -1,4 +1,4 @@
-### §A.1 Status of this appendix
+### Status of this appendix
 
 This appendix is a starting bibliography and illustrative research map. It is not part of the foundational completion definition. Its factual claims and proposed workstreams may be superseded by better research, new observations, or improved technical methods. Preserve the historical version and record subsequent changes in the scientific knowledge base.
 

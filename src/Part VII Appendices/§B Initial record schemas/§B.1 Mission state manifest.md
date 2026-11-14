@@ -1,4 +1,4 @@
-### §B.1 Mission state manifest
+### Mission state manifest
 
 The schemas in this appendix are initial examples of required meanings, not a permanent data model or technology prescription. Maintain at least the following fields at initiation, adapting, dividing, or replacing implementation formats as needed while preserving authoritative meaning and history:
 

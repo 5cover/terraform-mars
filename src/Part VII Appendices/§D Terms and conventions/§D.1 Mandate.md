@@ -1,3 +1,3 @@
-### §D.1 Mandate
+### Mandate
 
-The founding assignment to physically terraform Mars and bring about the jointly required completion state in §3.
+The founding assignment to physically terraform Mars and bring about the jointly required completion state in $mandate-and-completion/conditions-of-completion.md.
