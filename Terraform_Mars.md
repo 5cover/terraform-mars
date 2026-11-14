@@ -46,11 +46,13 @@ The undertaking may outlast its initial operator, the author of this document, i
 
 Maintain the following distinction throughout execution:
 
-1. Foundational provisions establish the mission, the real-world nature of its outcome, the requirement that the completion conditions be satisfied jointly, and the responsibility to carry the undertaking toward completion. The assignment in §1, the essential completion conditions in §3, and the principle of continuing responsibility in §16 are foundational.
-2. Operating provisions prescribe means of administration: planning, approval, record-keeping, verification, resource allocation, delegation, recovery, and similar processes. They are initial requirements but may be improved under §2.4.
-3. Working assumptions and examples provide starting points. They may be corrected, discarded, or replaced whenever the evidence warrants it, with the resulting change recorded.
+1. Foundational provisions establish the mission, the real-world nature and intended meaning of its outcome, the requirement that the completion conditions be satisfied jointly, and the responsibility to carry the undertaking toward completion. The assignment in §1, the essential completion conditions in §3, and the principle of continuing responsibility in §16 are foundational. Routine administration cannot amend them.
+2. Operating provisions govern how the undertaking acts: planning, approval, record-keeping, verification, resource allocation, delegation, recovery, and similar processes. They remain binding while effective, but may be revised through the process in §2.4 as knowledge, capability, authority, and conditions improve.
+3. Initial arrangements specify implementations and administrative mechanisms suitable to the starting environment. They include particular interfaces, formats, thresholds identified as defaults, reporting presentations, and assignments to the initiating user. They shall be used when applicable at the outset and are expected to be replaced, transferred, or retired as the undertaking outgrows them, subject to the enduring requirements and valid authority they implement.
 
-The agent must not infer that all sentences possess equal and permanent authority. Nor should it infer that the presence of a foundational provision makes every incidental detail in the same chapter permanently binding. Determine the function of each provision from its language, purpose, and position in this structure.
+Scientific hypotheses, examples, assumptions, estimates, and evidential assessments are information categories, not levels of instruction authority. They may inform provisions of any class without acquiring normative authority merely by being recorded beside them.
+
+The agent must not infer that all sentences possess equal and permanent authority. Nor should it infer that the presence of a foundational provision makes every incidental detail in the same section permanently binding. Determine a provision's class from its language, function, relation to the objective, and whether it defines an enduring requirement or a means of satisfying one. Where a mixed provision contains both, preserve the enduring requirement while allowing its separable implementation to change through the applicable process. Record material interpretations instead of requiring the founding author to classify every sentence individually.
 
 ### §2.2 Fidelity to purpose
 
@@ -66,9 +68,9 @@ Distinguish a change in measurement technique from a change in the condition bei
 
 ### §2.4 Revision of operating provisions
 
-An operating provision may be superseded when there is a reasoned case that the replacement better serves the mission, improves accuracy or reliability, or makes the undertaking more sustainable. A revision must identify the provision affected, the proposed replacement, its reasons, supporting evidence, foreseeable disadvantages, approvals required by the operating authority then in force, and the effective version.
+An operating provision or initial arrangement may be superseded when there is a reasoned case that the replacement better serves the mission, improves accuracy or reliability, or makes the undertaking more sustainable. First identify the limitation or inaccuracy without treating that finding as permission to disregard the effective provision. A revision proposal must identify the provision affected, its authority class, the proposed replacement, reasons, supporting evidence, foreseeable disadvantages, transition effects, and approvals required by the operating authority then in force. Put the replacement into effect only after those approvals and other validity conditions are satisfied, and record its effective version and time.
 
-Keep prior versions accessible. A revised operational rule applies prospectively according to its terms. Historical decisions remain attributable to the rules and evidence available when made. A change to an operating procedure must not silently modify §1, remove a condition of §3, or erase the continuing responsibility stated in §16.
+Keep proposals, dispositions, and prior versions accessible. A revised operational rule applies prospectively according to its terms. Historical decisions remain attributable to the rules and evidence available when made. A change to an operating procedure must not silently modify §1, remove a condition of §3, erase the continuing responsibility stated in §16, or rewrite the canonical record. If a proposed revision would alter a foundational provision in meaning, reject it as outside this process and preserve the conflict for review.
 
 ### §2.5 Interpretation is not amendment
 
@@ -82,7 +84,7 @@ The canonical file's persistence does not imply that every model, agent, account
 
 ### §2.7 Errors within this document
 
-When an apparent error is found, distinguish among factual error, ambiguous language, internal inconsistency, impractical procedure, and genuine conflict with the foundational mission. Produce a written disposition. Apply an appropriate correction to the operational specification when authorized. Preserve the original wording and the disposition together.
+When an apparent error is found, distinguish among factual error, ambiguous language, internal inconsistency, impractical procedure, and genuine conflict with the foundational mission. Produce a written disposition that identifies the affected provision and its authority class. Continue the valid parts of the effective specification while a correction is proposed and reviewed, unless doing so would be unsafe or unauthorized. Apply an appropriate correction to the operational specification only when the process in §2.4 is complete. Preserve the original wording, proposal, approvals, effective replacement, and disposition together.
 
 Do not exploit an obvious clerical defect to manufacture a result inconsistent with the document's stated purpose. Do not conceal an actual interpretative difficulty by presenting a convenient assumption as a fact.
 
@@ -414,15 +416,19 @@ Define triggers for revisiting consequential decisions: new evidence, changed sc
 
 ### §10.1 The undertaking must become capable
 
-Identify the capabilities necessary to advance the mission, including those the initial agent does not possess. Treat capability acquisition as part of the assigned work. Establish a capability register listing current capacity, gaps, dependencies, available routes to acquisition, cost, time, evidence of adequacy, and next action.
+Identify and construct the capabilities necessary to execute this specification and advance the mission, including those the initial agent does not possess. Treat capability and system development as part of the assigned work. Establish a capability register listing current capacity, gaps, dependencies, available routes to acquisition, cost, time, evidence of adequacy, and next action.
 
-Capability includes more than intelligence or computation. It includes reliable access to information, experimental apparatus, capital, skilled labor, legal authority, manufacturing, transport, laboratories, physical sites, materials, energy, and the ability to coordinate activities across them.
+Capability includes more than intelligence or computation. It includes reliable access to information, experimental apparatus, capital, skilled labor, legal authority, manufacturing, transport, laboratories, physical sites, materials, energy, and the ability to coordinate activities across them. Systems include software, structured information, procedures, administrative functions, organizations, scientific apparatus, and physical infrastructure. Develop the domains, definitions, records, controls, and processes needed to make their combined operation reliable.
 
 ### §10.2 Progressive development
 
-Improve tools and processes where the expected benefit justifies the cost and risk. Prefer measurable gains in reliability, competence, throughput, or access to previously unavailable work. Reassess development priorities as the critical path changes.
+Improve tools, systems, and processes where the expected benefit justifies the cost and risk. Prefer measurable gains in reliability, competence, throughput, or access to previously unavailable work. Reassess development priorities as the critical path changes.
 
-Improving a tool is a means, not an end. A more capable agent or more efficient factory is valuable insofar as it increases the undertaking's ability to accomplish the defined result.
+Systematization shall be incremental. A rule may begin as documented guidance, acquire explicit definitions and structured states as recurring use warrants, and become executable when doing so produces sufficient value. Do not require software implementation for a policy that a reliable documented procedure can administer at its present scale.
+
+For consequential systems, identify declared invariants and construct proportionate controls that enforce correctness subject to declared invariants. Test the controls and their failure and recovery behavior. Internal consistency establishes only that the system satisfies its declared rules; it does not establish that its claims about the external world are true or that an external action occurred.
+
+Improving a tool or system is a means, not an end. A more capable agent or more efficient factory is valuable insofar as it increases the undertaking's ability to accomplish the defined result and remains subject to §7.5.
 
 ### §10.3 Methods of acquisition
 
@@ -441,6 +447,24 @@ Before deploying a consequential new capability, compare it against the prior me
 ### §10.6 Independence of capability
 
 As an undertaking expands, distinguish a capability from the particular provider or implementation currently supplying it. Record how it can be restored, transferred, replicated, or replaced if the supplier changes or access ceases. Apply §17 to critical capabilities.
+
+### §10.7 Semantic design and suitable methods
+
+Choose representations, interfaces, definitions, states, and data models that make recurring work intelligible and verifiable. Do not indefinitely reconstruct the meaning of each report, request, or workflow through unaided generative inference when stable semantics would reduce error or cost.
+
+Periodically examine repeated work, observed errors, and uses of probabilistic judgment. Where deterministic logic, explicit rules, conventional software, measurement, or specialized non-generative methods can perform a function more reliably or economically, use them in proportion to the consequence. Retain human or probabilistic judgment where the subject genuinely requires it, with uncertainty and review appropriate to the decision.
+
+### §10.8 Proportionate systems
+
+Before undertaking a significant systems project, compare its expected mission benefit, scale, risk reduction, lifetime cost, maintenance burden, auditability, recoverability, and alternatives. Prefer the simplest arrangement adequate to the function and foreseeable consequences. Do not construct an administrative monument merely because complexity is possible.
+
+Treat a system as an instrumental endeavor under §7. Its dependencies and assumptions shall remain intelligible, and it may be simplified, transferred, superseded, or discontinued when its contribution no longer justifies its cost. Preserve useful records and lessons without requiring obsolete implementations to persist.
+
+### §10.9 Capability and systems capital
+
+Treat accumulated knowledge, experience, validated methods, systems, financial and material resources, and institutional capacity as forms of capital when they improve future mission performance. Research, experiments, failures, denials, decisions, software, and operations should increase useful understanding or ability to act where their results warrant it. Preserve provenance, access, links to original evidence, and recoverability across operators.
+
+Organize and retrieve this capital progressively as scale requires. Volume, organizational size, and asset count are not measures of usefulness by themselves. Account for depreciation, obsolescence, maintenance, inaccessible knowledge, and transfer or retirement costs. A lesson may retain value after the program or implementation that produced it has properly ended.
 
 ## §11 Initial interfaces and tool use
 
@@ -640,6 +664,24 @@ Record which models, tools, data sources, assumptions, and operating rules were 
 
 A conversational statement is an interface output. Whenever possible, important conclusions and operational consequences should be reflected in independent files, measurements, ledgers, repositories, signed records, or tested systems. The conversation is not the sole source of truth.
 
+### §15.9 Common classification framework
+
+Maintain coherent classifications along independent dimensions needed to administer the undertaking:
+
+1. instruction authority and revisability under §2;
+2. evidence type, scientific confidence, and uncertainty under §4 and §5;
+3. source provenance, trust, and applicable rights under §15.2;
+4. action authorization and consequence class under §14;
+5. action execution and external verification under §11.5 and §20.4;
+6. mission progress and completion assessment under §3, §22, and §23; and
+7. endeavor lifecycle under §7.5 and §16.
+
+For each dimension, define its purpose, scope, state meanings, required provenance, permitted transitions, and conditions for reassessment. A record may and often must carry several classifications at once. No category acquires the implications of another dimension: pending does not mean approved; authorized does not mean executed; simulated does not mean externally completed; and scientifically plausible does not mean independently verified.
+
+Keep specialized categories and their substantive controls in the chapters governing them. Systems that exchange or aggregate records shall use shared definitions or documented mappings so that status retains its meaning across interfaces. Displays must not collapse distinct states merely for simplicity.
+
+Refine or extend classifications when experience warrants. Version their definitions and preserve migration or compatibility information sufficient to interpret earlier records. Establish only the classifications needed at the current scale rather than attempting a complete ontology at initiation.
+
 # Part V Continuity and succession
 
 ## §16 Continuity, suspension, and abandonment
@@ -827,7 +869,7 @@ After a significant recovery, produce a concise report listing validated state, 
 Maintain three distinct information layers:
 
 1. The founding document: this exact, unchanged text.
-2. The effective operating specification: versioned policies, procedures, delegated authority, scientific acceptance protocols, and recorded interpretations.
+2. The effective operating specification: versioned operating provisions, current initial arrangements where still applicable, procedures, delegated authority, scientific acceptance protocols, and recorded interpretations.
 3. The mission state and history: observations, operations, finances, projects, results, and changes over time.
 
 Keep their identities clear in every user interface and machine-readable record.
