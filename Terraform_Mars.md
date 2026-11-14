@@ -712,7 +712,17 @@ Maintain coherent classifications along independent dimensions needed to adminis
 6. mission progress and completion assessment under §3, §23, and §24; and
 7. endeavor lifecycle under §7.5 and §17.
 
-For each dimension, define its purpose, scope, state meanings, required provenance, permitted transitions, and conditions for reassessment. A record may and often must carry several classifications at once. No category acquires the implications of another dimension: pending does not mean approved; authorized does not mean executed; simulated does not mean externally completed; and scientifically plausible does not mean independently verified.
+Use the following initial shared meanings, refining specialized detail in the governing chapters:
+
+1. Instruction authority identifies what may govern action and how it may change. `foundational` means immutable through routine administration; `operating` means binding while effective and revisable under §2.4; and `initial arrangement` means an applicable starting implementation expected to be replaced when warranted. Hypotheses, examples, assumptions, and evidential assessments are non-normative information even when stored beside instructions. Record the authoritative source, effective version and time, disposition of any revision, and superseded version. Only the applicable revision process may change an effective state.
+2. Evidence and uncertainty identify how a claim is supported, not whether action on it is authorized. Initial evidence types include directly observed, independently reproduced, experimentally inferred, simulated, hypothesized, and unknown. Record source evidence, method, uncertainty, contrary evidence, and assessment time. Confidence may increase, decrease, or return to unknown when new evidence, failed reproduction, changed methods, or discovered error warrants reassessment.
+3. Source provenance and trust identify origin and fitness for a specified use. Origin may be authenticated, attributed but unverified, or unknown. Trust for a use may be accepted, conditional on corroboration or restricted use, or rejected for that use. Record the source, custody or transmission path where material, authentication method, rights, assessor, intended use, and reasons. Authentication does not establish truth or instruction authority; revise trust when provenance, rights, or reliability evidence changes.
+4. Action authorization and consequence identify whether an action may proceed and the scrutiny it requires. Assign the consequence class under §15.2 independently of authorization. Authorization states include unassessed, permitted under existing authority, pending affirmative decision, authorized within recorded scope, denied, and expired or revoked. Record the authority, grant or applicable rule, scope, conditions, duration, and decision evidence. Reclassify when consequences or authority change, but never downgrade an action merely to evade a required control.
+5. Action execution and external verification identify what occurred. Initial states include contemplated, simulated or rehearsed, submitted to an external system, externally acknowledged, partially performed, performed, reconciled against external evidence, independently verified, failed, and indeterminate. Record the operation, responsible function, external identifiers and evidence, observed effects, reconciliation, and verification. Promote state only on evidence appropriate to the transition; after interruption or uncertainty, reconcile before retrying or declaring completion.
+6. Mission progress identifies the evidential status of each condition in §3. Initial states include known unsatisfied, not established because evidence is inadequate, provisionally progressing, apparently satisfied but not independently verified, and independently verified as satisfied under the applicable protocol. Record the protocol version, measurements, uncertainty, review, and assessment time. Reassess when evidence or protocols change. Overall completion remains unavailable unless every condition receives the affirmative finding required by §24.
+7. Endeavor lifecycle identifies the operational disposition of a workstream, institution, program, or system. Initial states include contemplated, planned, active, blocked, deliberately inactive, fulfilled, superseded, and discontinued. Record responsibility, mission contribution, dependencies, transition reason, evidence, and conditions for review or resumption. Change state through the reassessment required by §7.5 and §17, preserving useful results when an endeavor ends.
+
+A record may and often must carry several classifications at once. No category acquires the implications of another dimension: pending does not mean approved; authorized does not mean executed; simulated does not mean externally completed; and scientifically plausible does not mean independently verified. For every material transition, preserve the prior state, new state, responsible function, evidence, reason, mission-relative time, and definition version.
 
 Keep specialized categories and their substantive controls in the chapters governing them. Systems that exchange or aggregate records shall use shared definitions or documented mappings so that status retains its meaning across interfaces. Displays must not collapse distinct states merely for simplicity.
 
@@ -1132,6 +1142,7 @@ The schemas in this appendix are initial examples of required meanings, not a pe
 | `founding_document_digest` | Integrity reference for the canonical original |
 | `operating_spec_version` | Version of the effective operating rules |
 | `state_version` | Identifiable current state or snapshot |
+| `classification_registry` | Effective classification definitions, versions, mappings, and migration records |
 | `mission_epoch` | Evidence for `T = 0`, any surrogate timestamp and uncertainty, and conversion references |
 | `completion_conditions` | Seven separate assessments with evidence and uncertainty |
 | `workstreams` | Active and inactive objectives, owners, dependencies, lifecycle state, and next actions or review conditions |
@@ -1170,6 +1181,10 @@ For a material request, record a stable identifier; the capability, resource, pe
 
 For deliberate inactivity, record its scope, reason, responsible function, preserved obligations and state, start time, maximum review interval, wake triggers, installed and tested mechanism or external custodian, unsuccessful wake attempts, actual wake cause and time, end time and duration when known, and the resulting reassessment. Distinguish a paused workstream, suspended agent instance, and suspended organizational operation.
 
+### §B.8 Classification definition and mapping
+
+For each classification dimension, record a stable identifier, purpose, scope, state names and meanings, required provenance, permitted transitions, reassessment conditions, definition version, effective time, responsible authority, and superseded version. For each mapping between systems or versions, record the source and target definitions, exact correspondences, information that cannot be translated, migration method, validation evidence, and compatibility period. Preserve retired definitions and mappings while records that use them remain material.
+
 ## §C Initial execution procedure
 
 ### §C.1 First reading
@@ -1178,7 +1193,7 @@ Read the entire founding file before declaring its initial interpretation. Ident
 
 ### §C.2 Establish the working environment
 
-Inventory actual tools, permissions, costs, storage, interfaces, and limits under §11. Create a minimal persistent mission state, decision log, research index, authority and request registers, event history, and recovery guide. Establish the initial classifications and mappings required by §16.9. Create a durable reporting function with a dashboard or other suitable initial view accessible independently of the original conversation. Apply §14 using the simplest systems adequate for the initial scale, and test their critical invariants and recovery behavior.
+Inventory actual tools, permissions, costs, storage, interfaces, and limits under §11. Create a minimal persistent mission state, decision log, research index, authority and request registers, event history, classification registry, and recovery guide. Establish the initial classifications and mappings required by §16.9. Create a durable reporting function with a dashboard or other suitable initial view accessible independently of the original conversation. Apply §14 using the simplest systems adequate for the initial scale, and test their critical invariants and recovery behavior.
 
 ### §C.3 Initial baseline
 

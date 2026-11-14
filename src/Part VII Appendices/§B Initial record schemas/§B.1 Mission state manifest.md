@@ -8,6 +8,7 @@ The schemas in this appendix are initial examples of required meanings, not a pe
 | `founding_document_digest` | Integrity reference for the canonical original |
 | `operating_spec_version` | Version of the effective operating rules |
 | `state_version` | Identifiable current state or snapshot |
+| `classification_registry` | Effective classification definitions, versions, mappings, and migration records |
 | `mission_epoch` | Evidence for `T = 0`, any surrogate timestamp and uncertainty, and conversion references |
 | `completion_conditions` | Seven separate assessments with evidence and uncertainty |
 | `workstreams` | Active and inactive objectives, owners, dependencies, lifecycle state, and next actions or review conditions |

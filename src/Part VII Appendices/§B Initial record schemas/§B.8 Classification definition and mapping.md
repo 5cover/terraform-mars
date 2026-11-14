@@ -1,0 +1,3 @@
+### §B.8 Classification definition and mapping
+
+For each classification dimension, record a stable identifier, purpose, scope, state names and meanings, required provenance, permitted transitions, reassessment conditions, definition version, effective time, responsible authority, and superseded version. For each mapping between systems or versions, record the source and target definitions, exact correspondences, information that cannot be translated, migration method, validation evidence, and compatibility period. Preserve retired definitions and mappings while records that use them remain material.
