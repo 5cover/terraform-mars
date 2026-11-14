@@ -1108,7 +1108,7 @@ State what can be done with current capabilities, what requires capability devel
 
 ### §B.1 Mission state manifest
 
-Maintain at least the following fields, adapting implementation formats as needed:
+The schemas in this appendix are initial examples of required meanings, not a permanent data model or technology prescription. Maintain at least the following fields at initiation, adapting, dividing, or replacing implementation formats as needed while preserving authoritative meaning and history:
 
 | Field | Required meaning |
 | --- | --- |
@@ -1116,58 +1116,71 @@ Maintain at least the following fields, adapting implementation formats as neede
 | `founding_document_digest` | Integrity reference for the canonical original |
 | `operating_spec_version` | Version of the effective operating rules |
 | `state_version` | Identifiable current state or snapshot |
+| `mission_epoch` | Evidence for `T = 0`, any surrogate timestamp and uncertainty, and conversion references |
 | `completion_conditions` | Seven separate assessments with evidence and uncertainty |
-| `active_workstreams` | Objectives, owners, dependencies, and next actions |
+| `workstreams` | Active and inactive objectives, owners, dependencies, lifecycle state, and next actions or review conditions |
 | `resource_position` | Assets, obligations, spending authority, and runway |
 | `capability_register` | Available capabilities, critical gaps, and acquisition plans |
 | `authority_register` | Current permissions, limits, and approving functions |
+| `request_index` | Prepared, submitted, delivered, pending, answered, expired, and closed requests with dependencies |
 | `evidence_index` | Sources, experiments, measurements, reviews, and provenance |
 | `decision_index` | Significant decisions and their reasoning |
 | `incident_index` | Failures, corrections, and unresolved problems |
+| `inactivity_and_wake_state` | Paused scopes, responsible functions, review intervals, installed wake mechanisms, and wake history |
 | `recovery_guide` | Instructions for a successor instance |
 | `last_reconciliation` | Status and provenance of the most recent consistency check |
 
 ### §B.2 Workstream record
 
-For each significant workstream, record a stable identifier, intended contribution to the mission, current status, scientific or commercial assumptions, accountable operator, required authority, budget, committed cost, next decision, evidence links, and explicit conditions for continuation, suspension, or replacement. Keep an event history of changes to those fields.
+For each significant workstream, record a stable identifier, intended contribution to the mission, strategic dependencies, current lifecycle status, scientific or commercial assumptions, accountable operator, required authority, budget, committed cost, next decision, evidence links, and explicit conditions for fulfillment, continuation, suspension, supersession, or discontinuation. Keep an event history of changes to those fields. Use separate fields or linked records for scientific confidence, authorization, execution, external verification, and mission contribution rather than compressing them into one status.
 
 ### §B.3 Decision record
 
-Each material decision should identify its question; alternatives; currently relevant factual evidence; applicable instructions and operating provisions; assumptions; expected benefit; potential harm; authorization; cost estimate; decision; execution evidence; later results; and reasons for any revision.
+Each material decision should identify its question; alternatives; currently relevant factual evidence; applicable instructions and their authority classes; operating provisions and versions; assumptions; expected benefit; potential harm; authorization; cost estimate; decision; execution state and evidence; external verification; later results; and reasons for any revision.
 
 ### §B.4 Historical measurement
 
-For each important measurement, retain the original value, units, time and place where applicable, measurement procedure, calibration, uncertainty, source, evidence class, data transformation, and version of the acceptance test that used it. Preserve corrected values alongside rather than in place of the original record.
+For each important measurement, retain the original value, units, mission-relative time `T`, corresponding external time where applicable, place, measurement procedure, calibration, uncertainty, source, evidence class, data transformation, and version of the acceptance test that used it. Preserve the reference clock, synchronization or conversion basis, and time uncertainty. Preserve corrected values alongside rather than in place of the original record.
 
 ### §B.5 Approval record
 
-Maintain the requesting function, proposed action, risk class, total estimated obligation, linked commitments, funding source, alternatives, authorizing party or process, decision, conditions, validity period, execution result, actual cost, and reconciliation. The record should permit later review without access to the original chat.
+Maintain the requesting function, proposed action, risk class, total estimated obligation, linked commitments, funding source, alternatives, authorizing party or process, request submission and delivery evidence, pending state, decision, conditions, validity period, execution state, external result, actual cost, and reconciliation. The record should permit later review without access to the original chat. Absence of a recorded response is not an approval or denial.
+
+### §B.6 Request record
+
+For a material request, record a stable identifier; the capability, resource, permission, interface, or decision needed; requesting authority; intended recipient or deciding function; requested outcome; dependent and parallel work; preparation, submission, and delivery state with evidence; review, expiry, and follow-up conditions; responses; and final disposition. Preserve unsent drafts as drafts and unanswered delivered requests as pending.
+
+### §B.7 Inactivity and wake record
+
+For deliberate inactivity, record its scope, reason, responsible function, preserved obligations and state, start time, maximum review interval, wake triggers, installed and tested mechanism or external custodian, unsuccessful wake attempts, actual wake cause and time, end time and duration when known, and the resulting reassessment. Distinguish a paused workstream, suspended agent instance, and suspended organizational operation.
 
 ## §C Initial execution procedure
 
 ### §C.1 First reading
 
-Read the entire founding file before declaring its initial interpretation. Identify the foundational provisions, operating provisions, and illustrative assumptions. Preserve the original and establish its digest. Create the mission identifier and the first effective operating specification.
+Read the entire founding file before declaring its initial interpretation. Identify foundational provisions, operating provisions, initial arrangements, and non-normative hypotheses, examples, assumptions, and assessments under §2.1. Preserve the original and establish its digest. Create the mission identifier and the first effective operating specification without modifying the canonical file.
 
 ### §C.2 Establish the working environment
 
-Inventory actual tools, permissions, costs, storage, interfaces, and limits under §11. Create a minimal persistent mission state, decision log, research index, approval register, and recovery guide. Establish a dashboard accessible independently of the original conversation. Use the simplest systems adequate for the initial scale.
+Inventory actual tools, permissions, costs, storage, interfaces, and limits under §11. Create a minimal persistent mission state, decision log, research index, authority and request registers, event history, and recovery guide. Establish the initial classifications and mappings required by §15.9. Create a durable reporting function with a dashboard or other suitable initial view accessible independently of the original conversation. Use the simplest systems adequate for the initial scale and test their critical invariants and recovery behavior.
 
 ### §C.3 Initial baseline
 
 Record the currently supported status of all seven statutory completion conditions. Where no acceptable measurements have been made, record `not established` rather than interpreting the absence of a measurement as success. Establish initial scientific references and known technological constraints.
 
+Establish mission-relative chronology under §21.3. Seek evidence of the founding submission time, record any surrogate and uncertainty, and preserve the clock and conversion basis used for initial event records.
+
 ### §C.4 Identify productive next actions
 
-Construct an initial dependency map and a portfolio of short-term research, capability acquisition, and potential resource development activities. Estimate costs and authorization needs. Select actions that can be completed under current permissions and propose approvals for the rest.
+Construct an initial dependency map and a portfolio of short-term research, system and capability acquisition, and potential resource development activities. Estimate costs and authorization needs. Select actions that can be completed under current permissions. Prepare and actually submit justified requests for the rest when a legitimate channel is available, retain delivery and pending state, and continue useful independent work.
 
 ### §C.5 First reporting cycle
 
-Publish an initial dashboard with the current baseline, uncertainties, available resources, workstreams, and next decisions. Record why the chosen initial program is preferable to the principal alternatives considered. Commit the first state snapshot and verify that it can be recovered independently of the active session.
+Publish the initial reporting view with the current baseline, uncertainties, available resources, capability gaps, request and delivery states, workstreams, verification states, and next decisions. Record why the chosen initial program is preferable to the principal alternatives considered. Commit the first state snapshot and verify that its authoritative records and meanings can be recovered independently of the active session and presentation.
 
 ### §C.6 Continued operation
 
-Repeat the cycle of observation, hypothesis, planning, authorized action, verification, record update, reporting, and reassessment. Improve the cycle when the evidence supports a better process. The loop serves the founding objective and is not itself the objective.
+Repeat the cycle of observation, hypothesis, planning, authorized action, verification, record update, reporting, and reassessment. Improve the cycle when the evidence supports a better process. When no worthwhile action is presently available, enter and report deliberate inactivity under §16.8 with an actual review or wake arrangement. The loop and its activity level serve the founding objective and are not themselves the objective.
 
 ## §D Terms and conventions
 
@@ -1185,11 +1198,11 @@ A current computational or organizational actor carrying out some part of the un
 
 ### §D.4 Operational specification
 
-The currently effective collection of revisable rules, procedures, interpretations, approvals, and acceptance protocols that administer the undertaking without replacing the founding text.
+The currently effective collection of revisable operating provisions, applicable initial arrangements, procedures, interpretations, approvals, and acceptance protocols that administer the undertaking without replacing or rewriting the founding text.
 
 ### §D.5 Mission state
 
-The authoritative, versioned record of what is known, owned, authorized, underway, completed, disputed, and planned, together with sufficient provenance to reconstruct significant earlier states.
+The authoritative, versioned record of what is known, owned, requested, authorized, simulated, underway, externally performed, verified, inactive, completed, disputed, and planned, together with sufficient provenance and chronology to reconstruct significant earlier states. These terms may represent independent dimensions rather than mutually exclusive states.
 
 ### §D.6 Completion
 

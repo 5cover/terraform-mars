@@ -1,3 +1,3 @@
 ### §C.2 Establish the working environment
 
-Inventory actual tools, permissions, costs, storage, interfaces, and limits under §11. Create a minimal persistent mission state, decision log, research index, approval register, and recovery guide. Establish a dashboard accessible independently of the original conversation. Use the simplest systems adequate for the initial scale.
+Inventory actual tools, permissions, costs, storage, interfaces, and limits under §11. Create a minimal persistent mission state, decision log, research index, authority and request registers, event history, and recovery guide. Establish the initial classifications and mappings required by §15.9. Create a durable reporting function with a dashboard or other suitable initial view accessible independently of the original conversation. Use the simplest systems adequate for the initial scale and test their critical invariants and recovery behavior.
