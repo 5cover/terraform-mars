@@ -11,7 +11,8 @@
     "src",
     "Terraform_Mars.md",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "LICENSE-TEXT.md"
   ],
   "scripts": {
     "assemble": "majas -4 fs -2 md --out-title heading src -o Terraform_Mars.md",
@@ -19,7 +20,7 @@
     "check:references": "node scripts/check-references.ts src",
     "test": "pnpm run build && node --test --test-concurrency=1 tests/*.test.ts",
     "prepack": "pnpm run build",
-    "pack:check": "pnpm pack --dry-run",
+    "pack:check": "pnpm pack --dry-run --silent",
     "bootstrap": "majas -2 fs -4 md --in-title heading -o src {original_terraform_mars}.md"
   },
   "keywords": [
@@ -29,7 +30,7 @@
   ],
   "license": "Unlicense",
   "engines": {
-    "node": ">=22.18"
+    "node": ">=22.23.2"
   },
   "devEngines": {
     "packageManager": {

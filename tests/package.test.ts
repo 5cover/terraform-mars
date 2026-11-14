@@ -18,13 +18,15 @@ describe('published modules', () => {
   });
 
   it('exports section objects with matching named exports and unchanged source content', () => {
-    const sourceFile = resolve('src/Part I Mandate and completion/§3 Conditions of completion/§3.1 Conjunction.md');
+    const sourceFile = resolve(
+      'src/Part I Mandate and completion/\u00a73 Conditions of completion/\u00a73.1 Conjunction.md'
+    );
     const extracted = extractSection(readFileSync(sourceFile, 'utf8'), sourceFile);
     assert.equal(id, 'mandate-and-completion/conditions-of-completion/conjunction');
     assert.equal(heading, extracted.heading);
     assert.equal(content, extracted.content);
     assert.deepEqual(conjunction, { id, heading, content });
-    assert.match(content, /`A ∧ W ∧ B ∧ D ∧ I ∧ V ∧ H`/);
+    assert.match(content, /`A \u2227 W \u2227 B \u2227 D \u2227 I \u2227 V \u2227 H`/);
   });
 
   it('maps every public JavaScript export to an existing declaration', () => {

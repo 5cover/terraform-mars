@@ -12,8 +12,12 @@ The text is meant to work both as a plausible operational prompt and as a litera
 - Keep changes local to the sections involved. Preserve the founding instruction, its intended meaning, and the distinction between immutable founding requirements and revisable operational methods.
 - Write in restrained, precise, operational language. The instructions should sound like a serious assignment, not like a narrator explaining the story or anticipating its later events.
 - Derive intermediate work from the planetary objective. Long indirect strategies can be legitimate, but their dependencies, assumptions, and conditions for revision or conclusion should remain intelligible.
-- Avoid prescribing a particular future organization, agent architecture, project name, or historical outcome. *AUBE* is the name that emerges in the fiction, not a name supplied by the founding prompt.
-- Preserve Markdown heading structure and section references. Identifiers use `§` immediately followed by dot-separated tokens (an uppercase letter or a nonzero-leading decimal integer), and references must match heading identifiers exactly. Heading numbering must remain sequential, with no missing parents or skipped numbers.
-- After structural edits, rebuild the document and run the repository's reference/heading validator, if available. Check that cross-references and completion conditions remain coherent.
+- Avoid prescribing a particular future organization, agent architecture, project name, or historical outcome. _AUBE_ is the name that emerges in the fiction, not a name supplied by the founding prompt.
+- Treat Markdown under `src/` as canonical. The historical numbering in directory and file names exists for the majas assembly order; headings in Markdown remain unnumbered.
+- Use parent-qualified, title-derived `$slug/path.md` references. Update references when a title change changes its public slug path.
+- Run the majas assembly through `pnpm build`. The build validates heading structure, slug uniqueness, and canonical references before generating package modules.
+- Never edit `dist/` or the package export map manually. They are generated from Markdown, runtime sources, scenarios, and discovered slug paths.
+- Keep scenarios separate from the founding mandate. They describe fictional starting conditions and must not add requirements to the canonical instruction or prescribe an outcome.
+- After structural edits, rebuild the document and check that cross-references and completion conditions remain coherent.
 
 Prefer small, justified editorial revisions over broad rewrites. The goal is a document whose apparent simplicity can support consequences far beyond what its author could foresee.

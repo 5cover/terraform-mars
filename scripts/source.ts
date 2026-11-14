@@ -15,8 +15,8 @@ export interface ReferenceProblem {
 }
 
 const PART_PREFIX = /^Part (?:I|II|III|IV|V|VI|VII) /;
-const SECTION_PREFIX = /^§(?:[1-9]\d*|[A-D])(?:\.(?:0[1-9]|[1-9]\d*))? /;
-export const HISTORICAL_REFERENCE = /§(?:[1-9]\d*|[A-D])(?:\.(?:0[1-9]|[1-9]\d*))?/g;
+const SECTION_PREFIX = /^\u00a7(?:[1-9]\d*|[A-D])(?:\.(?:0[1-9]|[1-9]\d*))? /;
+export const HISTORICAL_REFERENCE = /\u00a7(?:[1-9]\d*|[A-D])(?:\.(?:0[1-9]|[1-9]\d*))?/g;
 export const SLUG_REFERENCE = /\$([a-z0-9]+(?:[a-z0-9-]*[a-z0-9])?(?:\/[a-z0-9]+(?:[a-z0-9-]*[a-z0-9])?)*)\.md/g;
 
 export function stripHistoricalPrefix(value: string): string {

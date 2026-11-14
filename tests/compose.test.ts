@@ -20,8 +20,8 @@ describe('compose', () => {
       '## Part I One\n\n## Part II Two'
     );
     assert.equal(
-      compose({ number: 'arab', prefix: '§', children: [section('One'), section('Two')] }),
-      '## §1 One\n\n## §2 Two'
+      compose({ number: 'arab', prefix: '\u00a7', children: [section('One'), section('Two')] }),
+      '## \u00a71 One\n\n## \u00a72 Two'
     );
     assert.match(
       compose({ number: 'latin', children: Array.from({ length: 27 }, (_, index) => section(String(index))) }),
@@ -32,7 +32,7 @@ describe('compose', () => {
   it('inherits same-style numbering through nested arrays and resets sibling scopes', () => {
     const output = compose({
       number: 'arab',
-      prefix: '§',
+      prefix: '\u00a7',
       children: [
         section('First'),
         [section('First child'), section('Second child')],
@@ -42,7 +42,7 @@ describe('compose', () => {
     });
     assert.equal(
       output,
-      '## §1 First\n\n### §1.1 First child\n\n### §1.2 Second child\n\n## §2 Second\n\n### §2.1 Reset child'
+      '## \u00a71 First\n\n### \u00a71.1 First child\n\n### \u00a71.2 Second child\n\n## \u00a72 Second\n\n### \u00a72.1 Reset child'
     );
   });
 
@@ -55,19 +55,19 @@ describe('compose', () => {
         [
           {
             number: 'arab',
-            prefix: '§',
+            prefix: '\u00a7',
             children: [section('Finance'), [section('Economic activity')]],
           },
         ],
       ],
     });
-    assert.equal(output, '## Part I Capability\n\n### §1 Finance\n\n#### §1.1 Economic activity');
+    assert.equal(output, '## Part I Capability\n\n### \u00a71 Finance\n\n#### \u00a71.1 Economic activity');
   });
 
   it('distinguishes inherited undefined numbering from disabled null numbering', () => {
     const output = compose({
       number: 'arab',
-      prefix: '§',
+      prefix: '\u00a7',
       children: [
         section('First'),
         'transition',
@@ -75,16 +75,16 @@ describe('compose', () => {
         { number: undefined, children: section('Second') },
       ],
     });
-    assert.equal(output, '## §1 First\n\ntransition\n\n## Unnumbered\n\n## §2 Second');
+    assert.equal(output, '## \u00a71 First\n\ntransition\n\n## Unnumbered\n\n## \u00a72 Second');
   });
 
   it('lets an explicit prefix replace the inherited prefix without consuming a counter', () => {
     const output = compose({
       number: 'arab',
-      prefix: '§',
+      prefix: '\u00a7',
       children: [section('First'), { prefix: 'Article ', children: section('Second') }, section('Third')],
     });
-    assert.equal(output, '## §1 First\n\n## Article 2 Second\n\n## §3 Third');
+    assert.equal(output, '## \u00a71 First\n\n## Article 2 Second\n\n## \u00a73 Third');
   });
 
   it('rejects invalid values and heading depth beyond Markdown limits', () => {

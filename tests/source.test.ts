@@ -14,20 +14,23 @@ import {
 describe('source titles', () => {
   it('removes every historical prefix form present in the source tree', () => {
     assert.equal(stripHistoricalPrefix('Part III Capability and resources'), 'Capability and resources');
-    assert.equal(stripHistoricalPrefix('§12 Financial and material resources'), 'Financial and material resources');
     assert.equal(
-      stripHistoricalPrefix('§12.2 Economic activity as an instrument'),
+      stripHistoricalPrefix('\u00a712 Financial and material resources'),
+      'Financial and material resources'
+    );
+    assert.equal(
+      stripHistoricalPrefix('\u00a712.2 Economic activity as an instrument'),
       'Economic activity as an instrument'
     );
-    assert.equal(stripHistoricalPrefix('§23.01 Permanent reporting function'), 'Permanent reporting function');
-    assert.equal(stripHistoricalPrefix('§A Initial scientific references'), 'Initial scientific references');
-    assert.equal(stripHistoricalPrefix('§A.2 Reference materials'), 'Reference materials');
+    assert.equal(stripHistoricalPrefix('\u00a723.01 Permanent reporting function'), 'Permanent reporting function');
+    assert.equal(stripHistoricalPrefix('\u00a7A Initial scientific references'), 'Initial scientific references');
+    assert.equal(stripHistoricalPrefix('\u00a7A.2 Reference materials'), 'Reference materials');
   });
 
   it('does not remove meaningful title text', () => {
     assert.equal(stripHistoricalPrefix('Particulate systems'), 'Particulate systems');
     assert.equal(stripHistoricalPrefix('Section 12 resources'), 'Section 12 resources');
-    assert.equal(stripHistoricalPrefix('§E Experimental appendix'), '§E Experimental appendix');
+    assert.equal(stripHistoricalPrefix('\u00a7E Experimental appendix'), '\u00a7E Experimental appendix');
   });
 
   it('normalizes case, diacritics, and separator runs', () => {
