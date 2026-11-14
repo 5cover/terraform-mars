@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pnpm majas -4 fs -2 md src -o Terraform_Mars.md",
+    "bootstrap": "pnpm majas -2 fs -4 md -o src {original_terraform_mars}.md"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Unlicense",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
