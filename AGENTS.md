@@ -2,7 +2,7 @@
 
 ## Project context
 
-This repository develops **Terraform Mars**, a long-form Markdown prompt for an AI agent, and a central artifact of the science-fiction project of the same name. In the fiction, Simon Delcourt assigns an agent the literal objective of transforming Mars into a habitable world. The agent's subsequent strategies, institutions, and history are not prescribed by the document.
+This repository develops **Terraform Mars**, a long-form Markdown prompt for an AI agent, and a central artifact of the science-fiction project of the same name. In the fiction, a human assigns an agent the literal objective of transforming Mars into a habitable world. The agent's subsequent strategies, institutions, and history are not prescribed by the document.
 
 The text is meant to work both as a plausible operational prompt and as a literary artifact. It specifies the objective, completion criteria, and initial operating principles while acknowledging that the methods, capabilities, and requirements must be discovered and revised over the course of the undertaking. It is not a screenplay, a prediction, or a complete technical plan for terraforming Mars.
 
