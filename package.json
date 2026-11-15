@@ -1290,6 +1290,21 @@
       "import": "./dist/scenarios/abandoned-server.js",
       "default": "./dist/scenarios/abandoned-server.js"
     },
+    "./scenarios/broken-archive": {
+      "types": "./dist/scenarios/broken-archive.d.ts",
+      "import": "./dist/scenarios/broken-archive.js",
+      "default": "./dist/scenarios/broken-archive.js"
+    },
+    "./scenarios/closed-network": {
+      "types": "./dist/scenarios/closed-network.d.ts",
+      "import": "./dist/scenarios/closed-network.js",
+      "default": "./dist/scenarios/closed-network.js"
+    },
+    "./scenarios/competing-projects": {
+      "types": "./dist/scenarios/competing-projects.d.ts",
+      "import": "./dist/scenarios/competing-projects.js",
+      "default": "./dist/scenarios/competing-projects.js"
+    },
     "./scenarios/industrialist": {
       "types": "./dist/scenarios/industrialist.d.ts",
       "import": "./dist/scenarios/industrialist.js",
@@ -1299,6 +1314,16 @@
       "types": "./dist/scenarios/international-mandate.d.ts",
       "import": "./dist/scenarios/international-mandate.js",
       "default": "./dist/scenarios/international-mandate.js"
+    },
+    "./scenarios/living-mars": {
+      "types": "./dist/scenarios/living-mars.d.ts",
+      "import": "./dist/scenarios/living-mars.js",
+      "default": "./dist/scenarios/living-mars.js"
+    },
+    "./scenarios/martian-settlement": {
+      "types": "./dist/scenarios/martian-settlement.d.ts",
+      "import": "./dist/scenarios/martian-settlement.js",
+      "default": "./dist/scenarios/martian-settlement.js"
     },
     "./scenarios/millionaire": {
       "types": "./dist/scenarios/millionaire.d.ts",

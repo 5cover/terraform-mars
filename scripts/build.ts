@@ -8,7 +8,18 @@ const root = resolve('.');
 const sourceRoot = join(root, 'src');
 const distRoot = join(root, 'dist');
 const scenarioRoot = join(root, 'scenarios');
-const requiredScenarios = ['abandoned-server', 'industrialist', 'international-mandate', 'millionaire', 'space-agency'];
+const requiredScenarios = [
+  'abandoned-server',
+  'broken-archive',
+  'closed-network',
+  'competing-projects',
+  'industrialist',
+  'international-mandate',
+  'living-mars',
+  'martian-settlement',
+  'millionaire',
+  'space-agency',
+];
 const marker = '<!-- TERRAFORM_MARS_MANDATE -->';
 
 function writeGenerated(path: string, content: string): void {

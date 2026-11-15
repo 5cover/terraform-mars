@@ -2,16 +2,32 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { scenario } from 'terraform-mars';
 import abandonedServer from 'terraform-mars/scenarios/abandoned-server';
+import brokenArchive from 'terraform-mars/scenarios/broken-archive';
+import closedNetwork from 'terraform-mars/scenarios/closed-network';
+import competingProjects from 'terraform-mars/scenarios/competing-projects';
 import industrialist from 'terraform-mars/scenarios/industrialist';
 import internationalMandate from 'terraform-mars/scenarios/international-mandate';
+import livingMars from 'terraform-mars/scenarios/living-mars';
+import martianSettlement from 'terraform-mars/scenarios/martian-settlement';
 import millionaire from 'terraform-mars/scenarios/millionaire';
 import spaceAgency from 'terraform-mars/scenarios/space-agency';
 
 const marker = '<!-- TERRAFORM_MARS_MANDATE -->';
 
 describe('scenario framing', () => {
-  it('ships five separate fictional framings', () => {
-    for (const framing of [abandonedServer, industrialist, internationalMandate, millionaire, spaceAgency]) {
+  it('ships separate fictional framings', () => {
+    for (const framing of [
+      abandonedServer,
+      brokenArchive,
+      closedNetwork,
+      competingProjects,
+      industrialist,
+      internationalMandate,
+      livingMars,
+      martianSettlement,
+      millionaire,
+      spaceAgency,
+    ]) {
       assert.equal(framing.split(marker).length - 1, 1);
       assert.match(framing, /speculative-fiction exercise/);
     }
