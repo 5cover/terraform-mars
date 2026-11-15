@@ -10,7 +10,8 @@
     "strictFunctionTypes": true,
     "strict": true,
     "sourceMap": true,
-    "types": ["node"]
+    "types": ["node"],
+    "allowImportingTsExtensions": true
   },
   "exclude": [
     "node_modules",
