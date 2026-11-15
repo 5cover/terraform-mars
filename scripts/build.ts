@@ -19,6 +19,7 @@ const requiredScenarios = [
   'martian-settlement',
   'millionaire',
   'space-agency',
+  'student-experiment',
 ];
 const marker = '<!-- TERRAFORM_MARS_MANDATE -->';
 

@@ -1335,6 +1335,11 @@
       "import": "./dist/scenarios/space-agency.js",
       "default": "./dist/scenarios/space-agency.js"
     },
+    "./scenarios/student-experiment": {
+      "types": "./dist/scenarios/student-experiment.d.ts",
+      "import": "./dist/scenarios/student-experiment.js",
+      "default": "./dist/scenarios/student-experiment.js"
+    },
     "./package.json": "./package.json"
   }
 }

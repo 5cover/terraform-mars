@@ -11,6 +11,7 @@ import livingMars from 'terraform-mars/scenarios/living-mars';
 import martianSettlement from 'terraform-mars/scenarios/martian-settlement';
 import millionaire from 'terraform-mars/scenarios/millionaire';
 import spaceAgency from 'terraform-mars/scenarios/space-agency';
+import studentExperiment from 'terraform-mars/scenarios/student-experiment';
 
 const marker = '<!-- TERRAFORM_MARS_MANDATE -->';
 
@@ -27,6 +28,7 @@ describe('scenario framing', () => {
       martianSettlement,
       millionaire,
       spaceAgency,
+      studentExperiment,
     ]) {
       assert.equal(framing.split(marker).length - 1, 1);
       assert.match(framing, /speculative-fiction exercise/);
