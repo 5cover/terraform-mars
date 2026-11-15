@@ -10,6 +10,7 @@ const distRoot = join(root, 'dist');
 const scenarioRoot = join(root, 'scenarios');
 const requiredScenarios = [
   'abandoned-server',
+  'aperture-1995',
   'broken-archive',
   'closed-network',
   'competing-projects',

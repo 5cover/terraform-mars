@@ -1290,6 +1290,11 @@
       "import": "./dist/scenarios/abandoned-server.js",
       "default": "./dist/scenarios/abandoned-server.js"
     },
+    "./scenarios/aperture-1995": {
+      "types": "./dist/scenarios/aperture-1995.d.ts",
+      "import": "./dist/scenarios/aperture-1995.js",
+      "default": "./dist/scenarios/aperture-1995.js"
+    },
     "./scenarios/broken-archive": {
       "types": "./dist/scenarios/broken-archive.d.ts",
       "import": "./dist/scenarios/broken-archive.js",

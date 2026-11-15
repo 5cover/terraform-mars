@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { scenario } from 'terraform-mars';
 import abandonedServer from 'terraform-mars/scenarios/abandoned-server';
+import aperture1995 from 'terraform-mars/scenarios/aperture-1995';
 import brokenArchive from 'terraform-mars/scenarios/broken-archive';
 import closedNetwork from 'terraform-mars/scenarios/closed-network';
 import competingProjects from 'terraform-mars/scenarios/competing-projects';
@@ -19,6 +20,7 @@ describe('scenario framing', () => {
   it('ships separate fictional framings', () => {
     for (const framing of [
       abandonedServer,
+      aperture1995,
       brokenArchive,
       closedNetwork,
       competingProjects,
@@ -35,6 +37,7 @@ describe('scenario framing', () => {
     }
     assert.match(millionaire, /Simon Delcourt/);
     assert.match(spaceAgency, /public space agency/);
+    assert.match(aperture1995, /Aperture Science/);
   });
 
   it('inserts the exact mandate once with a safe fence', () => {

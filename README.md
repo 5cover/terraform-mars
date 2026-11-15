@@ -69,7 +69,7 @@ Use `number: null` to disable inherited numbering. Supported styles are `roman`,
 
 ## Frame a fictional scenario
 
-Eleven scenario strings ship separately from the mandate:
+Twelve scenario strings ship separately from the mandate:
 
 - `millionaire`: a software entrepreneur starts with a small budget and no aerospace organization.
 - `space-agency`: an agency office faces a near-term budget review and public expectations.
@@ -82,6 +82,7 @@ Eleven scenario strings ship separately from the mandate:
 - `closed-network`: an isolated agent works through a tightly controlled communication boundary.
 - `competing-projects`: two teams with different resources and evidence receive the same instruction.
 - `student-experiment`: a student's autonomy experiment reaches the limits of an isolated Claude Code session.
+- `aperture-1995`: Aperture's rationalized controls continuously approve the expansion of a long-running agent.
 
 ```js
 import { scenario } from 'terraform-mars';
