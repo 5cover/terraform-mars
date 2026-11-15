@@ -41,7 +41,7 @@ An individual section does not silently include its descendants. Import and comp
 
 ## Compose a prompt
 
-`compose()` accepts strings, section objects, nested arrays, and configuration objects. The root section level is `##`. A nested array creates a deeper heading level and a new sibling counter. Numbering is optional and affects presentation only; stable `$slug/path.md` references are not rewritten.
+`compose()` accepts strings, section objects, nested arrays, and configuration objects. The root section level is `##`. A nested array creates a deeper heading level and a new sibling counter. Numbering is optional and affects presentation only. Stable `$slug/path.md` references to included sections are rewritten when the target has one unique generated display number. References to omitted or unnumbered sections remain stable.
 
 ```js
 import { compose } from 'terraform-mars';
@@ -92,7 +92,7 @@ pnpm test
 pnpm pack:check
 ```
 
-Markdown under `src/` is canonical. The historical filesystem names retain their ordering labels for majas, while the headings stored in those files are unnumbered. `pnpm build` asks majas to assemble `Terraform_Mars.md`, validates stable references and slug collisions, and generates `dist/`. Generated files are never edited directly.
+Markdown under `src/` is canonical. The historical filesystem names retain their ordering labels for the majas editing tree, while the headings stored in those files are unnumbered. `pnpm build` composes the historically numbered `Terraform_Mars.md`, validates stable references and slug collisions, and generates `dist/`. Generated files are never edited directly.
 
 ## Licenses
 

@@ -70,7 +70,7 @@ function joinMarkdown(blocks) {
   return result;
 }
 
-function renderScope(items, level, context) {
+function renderScope(items, level, context, references) {
   if (level > 6) throw new RangeError('Composition nesting exceeds Markdown heading level 6');
 
   const blocks = [];
@@ -89,6 +89,13 @@ function renderScope(items, level, context) {
         const lineage = [...itemContext.lineage, formatNumber(itemContext.number, state.counter)];
         label = `${itemContext.prefix}${lineage.join('.')}`;
         state.lineage = lineage;
+        const assignment = references.byId.get(item.id) ?? { count: 0, labels: new Set() };
+        assignment.count++;
+        assignment.labels.add(label);
+        references.byId.set(item.id, assignment);
+        const owners = references.byLabel.get(label) ?? new Set();
+        owners.add(item.id);
+        references.byLabel.set(label, owners);
       }
       blocks.push(
         `${'#'.repeat(level)} ${label ? `${label} ` : ''}${item.heading}${item.content ? `\n\n${item.content}` : ''}`
@@ -97,7 +104,7 @@ function renderScope(items, level, context) {
     }
 
     if (Array.isArray(item)) {
-      blocks.push(renderScope(item, level + 1, { ...itemContext, lineage: state.lineage }));
+      blocks.push(renderScope(item, level + 1, { ...itemContext, lineage: state.lineage }, references));
       return;
     }
 
@@ -128,5 +135,21 @@ function renderScope(items, level, context) {
 
 export function compose(composition) {
   const context = { number: null, prefix: '', lineage: [] };
-  return renderScope(Array.isArray(composition) ? composition : [composition], 2, context);
+  const references = { byId: new Map(), byLabel: new Map() };
+  const rendered = renderScope(Array.isArray(composition) ? composition : [composition], 2, context, references);
+  return rendered.replace(
+    /\$([a-z0-9]+(?:[a-z0-9-]*[a-z0-9])?(?:\/[a-z0-9]+(?:[a-z0-9-]*[a-z0-9])?)*)\.md/g,
+    (reference, id) => {
+      const assignment = references.byId.get(id);
+      if (!assignment) return reference;
+      if (assignment.count !== 1 || assignment.labels.size !== 1) {
+        throw new Error(`Reference to section ${id} is ambiguous because the section is numbered more than once`);
+      }
+      const [label] = assignment.labels;
+      if (references.byLabel.get(label).size !== 1) {
+        throw new Error(`Reference to section ${id} is ambiguous because display label ${label} is not unique`);
+      }
+      return label;
+    }
+  );
 }

@@ -14,6 +14,19 @@ describe('compose', () => {
     assert.equal(compose(section('Heading', content)), `## Heading\n\n${content}`);
   });
 
+  it('rewrites forward references when the target has a unique generated number', () => {
+    const first = { id: 'first', heading: 'First', content: 'See $second.md and $omitted.md.\n' };
+    const second = { id: 'second', heading: 'Second', content: '' };
+    const output = compose({ number: 'arab', prefix: '\u00a7', children: [first, second] });
+    assert.equal(output, '## \u00a71 First\n\nSee \u00a72 and $omitted.md.\n\n## \u00a72 Second');
+  });
+
+  it('rewrites references in literal strings and leaves unnumbered targets stable', () => {
+    const target = { id: 'target', heading: 'Target', content: '' };
+    assert.equal(compose(['See $target.md.', target]), 'See $target.md.\n\n## Target');
+    assert.equal(compose({ number: 'latin', children: ['See $target.md.', target] }), 'See A.\n\n## A Target');
+  });
+
   it('renders Roman, Arabic, and Latin counters', () => {
     assert.equal(
       compose({ number: 'roman', prefix: 'Part ', children: [section('One'), section('Two')] }),
@@ -51,7 +64,7 @@ describe('compose', () => {
       number: 'roman',
       prefix: 'Part ',
       children: [
-        section('Capability'),
+        section('Capability', 'See $finance.md.\n'),
         [
           {
             number: 'arab',
@@ -61,7 +74,10 @@ describe('compose', () => {
         ],
       ],
     });
-    assert.equal(output, '## Part I Capability\n\n### \u00a71 Finance\n\n#### \u00a71.1 Economic activity');
+    assert.equal(
+      output,
+      '## Part I Capability\n\nSee \u00a71.\n\n### \u00a71 Finance\n\n#### \u00a71.1 Economic activity'
+    );
   });
 
   it('distinguishes inherited undefined numbering from disabled null numbering', () => {
@@ -95,5 +111,22 @@ describe('compose', () => {
     );
     assert.throws(() => compose({ prefix: 1, children: section('Invalid') } as never), /prefix must be a string/);
     assert.throws(() => compose([[[[[[section('Too deep')]]]]]]), /heading level 6/);
+  });
+
+  it('rejects references with ambiguous numbered targets or display labels', () => {
+    const target = { id: 'target', heading: 'Target', content: '' };
+    const reference = { id: 'reference', heading: 'Reference', content: 'See $target.md.\n' };
+    assert.throws(
+      () => compose({ number: 'arab', children: [reference, target, target] }),
+      /section target is ambiguous because the section is numbered more than once/
+    );
+
+    const dummy = { id: 'dummy', heading: 'Dummy', content: '' };
+    const other = { id: 'other', heading: 'Other', content: '' };
+    assert.throws(
+      () =>
+        compose([{ number: 'arab', children: [reference, target] }, [{ number: 'arab', children: [dummy, other] }]]),
+      /display label 2 is not unique/
+    );
   });
 });

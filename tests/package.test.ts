@@ -15,6 +15,10 @@ describe('published modules', () => {
     const source = readFileSync(resolve('Terraform_Mars.md'), 'utf8');
     assert.equal(complete, source);
     assert.equal(namedComplete, source);
+    assert.match(source, /^<FoundingMandate>Terraform Mars\./);
+    assert.match(source, /^# Part I Mandate and completion$/m);
+    assert.match(source, /^### \u00a723\.01 Permanent reporting function$/m);
+    assert.doesNotMatch(source, /\$[a-z0-9][a-z0-9/-]*\.md/);
   });
 
   it('exports section objects with matching named exports and unchanged source content', () => {

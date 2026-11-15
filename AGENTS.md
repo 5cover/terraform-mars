@@ -13,9 +13,9 @@ The text is meant to work both as a plausible operational prompt and as a litera
 - Write in restrained, precise, operational language. The instructions should sound like a serious assignment, not like a narrator explaining the story or anticipating its later events.
 - Derive intermediate work from the planetary objective. Long indirect strategies can be legitimate, but their dependencies, assumptions, and conditions for revision or conclusion should remain intelligible.
 - Avoid prescribing a particular future organization, agent architecture, project name, or historical outcome. _AUBE_ is the name that emerges in the fiction, not a name supplied by the founding prompt.
-- Treat Markdown under `src/` as canonical. The historical numbering in directory and file names exists for the majas assembly order; headings in Markdown remain unnumbered.
+- Treat Markdown under `src/` as canonical. The historical numbering in directory and file names preserves the majas editing order and the canonical display profile; headings in Markdown remain unnumbered.
 - Use parent-qualified, title-derived `$slug/path.md` references. Update references when a title change changes its public slug path.
-- Run the majas assembly through `pnpm build`. The build validates heading structure, slug uniqueness, and canonical references before generating package modules.
+- Preserve the majas editing tree, but build `Terraform_Mars.md` as the canonical numbered composition through `pnpm build`. The build validates heading structure, slug uniqueness, and source references before generating package modules.
 - Never edit `dist/` or the package export map manually. They are generated from Markdown, runtime sources, scenarios, and discovered slug paths.
 - Keep scenarios separate from the founding mandate. They describe fictional starting conditions and must not add requirements to the canonical instruction or prescribe an outcome.
 - After structural edits, rebuild the document and check that cross-references and completion conditions remain coherent.

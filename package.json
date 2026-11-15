@@ -15,7 +15,7 @@
     "LICENSE-TEXT.md"
   ],
   "scripts": {
-    "assemble": "majas -4 fs -2 md --out-title heading src -o Terraform_Mars.md",
+    "assemble": "node scripts/build-complete.ts",
     "build": "pnpm run assemble && node scripts/build.ts",
     "check:references": "node scripts/check-references.ts src",
     "test": "pnpm run build && node --test --test-concurrency=1 tests/*.test.ts",
